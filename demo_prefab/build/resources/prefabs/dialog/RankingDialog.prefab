@@ -1,0 +1,72 @@
+
+{
+	"class":"RankingDialogController",
+	"property":{
+		"x":20,
+		"y":20
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"atlas":"atlas/common",
+					"default":"frame_001"
+				},
+				"x":0,
+				"y":0,
+				"sprite":{
+					"type":"sliced",
+					"width":600,
+					"height":640
+				}
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindTextView",
+			"property":{
+				"bind":{
+					"key":"title",
+					"target":"RankingDialogController"
+				},
+				"x":300,
+				"y":10,
+				"textField":{
+					"textAlign":"center",
+					"color":"#FF0000",
+					"size":30
+				}
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindListView",
+			"property":{
+				"bind":{
+					"key":"users",
+					"childPrefab":"prefabs/dialog/RankingChild",
+					"target":"RankingDialogController"
+				},
+				"x":20,
+				"y":50,
+				"listView":{
+					"maxPerLine":1,
+					"cellWidth":560,
+					"cellHeight":100,
+					"size":{
+						"width":580,
+						"height":600
+					}
+				}
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}
