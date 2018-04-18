@@ -27,7 +27,9 @@ class LAnimation extends LSprite {
         this.onframe();
         this.colIndex = 0;
     }
-
+    setList(list) {
+        this.imageArray = list;
+    }
     setAction(rowIndex, colIndex, mode, isMirror) {
         let s = this, changed = false;
         if (typeof rowIndex !== UNDEFINED && rowIndex >= 0 && rowIndex < s.imageArray.length) {

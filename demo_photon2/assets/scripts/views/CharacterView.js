@@ -95,7 +95,7 @@ class CharacterView extends LSprite {
         this.layer.x = -16;
         this.layer.y = -40;
         this.addChild(this.layer);
-        this.addShape(LShape.RECT, [0, 0, BattleCharacterSize.width, BattleCharacterSize.height]);
+        //this.addShape(LShape.RECT, [0, 0, BattleCharacterSize.width, BattleCharacterSize.height]);
         this.layer.addEventListener(LEvent.ENTER_FRAME, this._onframe, this);
         this._addAnimation();
         this.setActionDirection(CharacterAction.STAND, this.belong ? CharacterDirection.UP : CharacterDirection.DOWN);
@@ -180,10 +180,19 @@ class CharacterView extends LSprite {
         loader.load(`./resources/images/${this.id}.png`, LLoader.TYPE_BITMAPDATE);
     }
     _loadImageComplete(event) {
-        let bitmapData = new LBitmapData(event.target, 0, 0, BattleCharacterSize.width, BattleCharacterSize.height);
+        let bitmapData = new LBitmapData(event.target);
+        let height = bitmapData.height;
+        console.log('height=', height, this.model.width, (this.model.width * 32 - height) * 0.5);
         let oldBitmapData = this.anime.bitmap.bitmapData;
+        bitmapData.setProperties(height * oldBitmapData.x / oldBitmapData.height >>> 0, 0, height, height);
         this.anime.bitmap.bitmapData = bitmapData;
-        this.anime.bitmap.bitmapData.setCoordinate(oldBitmapData.x, oldBitmapData.y);
+        //this.anime.bitmap.bitmapData.setCoordinate(oldBitmapData.x, oldBitmapData.y);
+        this.anime.setList(CharacterView._getAnimationData(height * 28, height));
+        this.layer.x = (32 - height) * 0.5 + ((this.model.width + 1) % 2) * 16;
+        //this.layer.x = ((this.model.width % 2) * 32 - height) * 0.5;
+        this.layer.y = 24 - height;// this.model.height;
+        //this.layer.y = -40;
+        this.anime.addShape(LShape.RECT, [0, 0, this.model.width * 32, this.model.height * 24]);
     }
     _addAnimation() {
         let bitmapData = new LBitmapData(Common.datalist[DEFAULT_CHARACTER_IMG], 0, 0, BattleCharacterSize.width, BattleCharacterSize.height);
@@ -208,9 +217,9 @@ class CharacterView extends LSprite {
         this.dispatchEvent(CharacterActionEvent.ATTACK_ACTION_COMPLETE);
     }
 }
-CharacterView._getAnimationData = function() {
+CharacterView._getAnimationData = function(width = 1792, height = 64) {
     // 1792 x 64
-    let list = LGlobal.divideCoordinate(1792, 64, 1, 28);
+    let list = LGlobal.divideCoordinate(width, height, 1, 28);
     let data = [
         [list[0][0], list[0][1], list[0][2], list[0][3], list[0][3]], //ATTACK 0
         [list[0][4], list[0][5], list[0][6], list[0][7], list[0][7]], //ATTACK 1

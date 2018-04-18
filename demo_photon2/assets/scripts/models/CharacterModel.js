@@ -7,11 +7,16 @@ class CharacterModel {
         this.data = ConfigManager.get('characters').find((child) => {
             return child.id === this.id;
         });
-        this.init();
+        this._init();
     }
-    init() {
+    _init() {
         
     }
-
+    get width() {
+        return this.data.width;
+    }
+    get height() {
+        return this.data.height;
+    }
 }
 export default CharacterModel;

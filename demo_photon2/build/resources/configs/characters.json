@@ -1,23 +1,29 @@
 [
     {
         "id":1,
-        "type":"arm",
+        "type":"build",
         "target":"all",
-        "movePower":3,
+        "movePower":0,
+        "width":4,
+        "height":3,
         "speed":1
     },
     {
         "id":2,
-        "type":"arm",
-        "target":"arm",
-        "movePower":3,
+        "type":"build",
+        "target":"all",
+        "movePower":0,
+        "width":3,
+        "height":2,
         "speed":1
     },
     {
         "id":3,
         "type":"arm",
-        "target":"build",
+        "target":"arm",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -25,6 +31,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -32,6 +40,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -39,6 +49,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -46,6 +58,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -53,6 +67,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -60,6 +76,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     },
     {
@@ -67,6 +85,8 @@
         "type":"arm",
         "target":"all",
         "movePower":3,
+        "width":1,
+        "height":1,
         "speed":1
     }
 ]

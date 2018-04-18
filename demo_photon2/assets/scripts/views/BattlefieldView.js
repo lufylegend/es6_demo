@@ -35,13 +35,21 @@ class BattlefieldView extends BindSpriteView {
         this.addChild(sprite);
         this.characterLayer = new LSprite();
         this.addChild(this.characterLayer);
+
+        let character = new CharacterView({ id: 1, level: 1, playerId: 1 });
+        character.setCoordinate(8 * 32, 28 * 24);
+        this.characterLayer.addChild(character);
+
+        character = new CharacterView({ id: 2, level: 1, playerId: 1 });
+        character.setCoordinate(3 * 32, 25 * 24);
+        this.characterLayer.addChild(character);
     }
     _dragEnd(event) {
         let hit = this.hitTestPoint(event.x, event.y);
         if (hit) {
             let card = event.card;
             let point = this.getChildAt(0).globalToLocal(new LPoint(event.x, event.y));
-            console.log('point=', point);
+            console.log('point=', point, (point.x / 32 >>> 0), (point.y / 24 >>> 0));
             //let character = new CharacterView({ id: card.model.id, level: 1, playerId: MasterClient.playerId });
             let character = new CharacterView({ id: card.model.id, level: 1, playerId: 1 });
             character.setCoordinate((point.x / 32 >>> 0) * 32, (point.y / 24 >>> 0) * 24);

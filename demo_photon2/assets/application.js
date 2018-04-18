@@ -28,7 +28,7 @@ function main() {
         LGlobal.screen(LGlobal.FULL_SCREEN);
     }
 
-    LGlobal.debug = true;
+    LGlobal.setDebug(true);
     LLoadManage.load(
         loadData,
         function(progress) {
