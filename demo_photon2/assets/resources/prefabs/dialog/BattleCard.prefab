@@ -1,0 +1,62 @@
+
+{
+	"class":"BindListChildView",
+	"property":{
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"atlas":"atlas/common",
+					"default":"frame_001",
+					"target":"BindListChildView"
+				},
+				"x":0,
+				"y":0,
+				"sprite":{
+					"type":"sliced",
+					"width":100,
+					"height":120
+				}
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"key":"icon",
+					"atlas":"atlas/Card",
+					"target":"BindListChildView"
+				},
+				"sprite":{
+					"type":"simple",
+					"width":100,
+					"height":120
+				},
+				"x":0,
+				"y":0
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindTextView",
+			"property":{
+				"bind":{
+					"key":"cost",
+					"target":"BindListChildView"
+				},
+				"x":0,
+				"y":0
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>arrow_off.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{612,298},{70,70}}</string>
+				<key>offset</key>
+				<string>{1,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>arrow_on.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{682,298},{66,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{72,72}</string>
+			</dict>
+			<key>arrow.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{612,172},{126,126}}</string>
+				<key>offset</key>
+				<string>{0,-1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{128,128}</string>
+			</dict>
+			<key>chara-1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{438,172},{174,162}}</string>
+				<key>offset</key>
+				<string>{0,13}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,189}</string>
+			</dict>
+			<key>chara-2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{786,0},{174,171}}</string>
+				<key>offset</key>
+				<string>{0,18}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,206}</string>
+			</dict>
+			<key>chara-3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{438,0},{174,172}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,172}</string>
+			</dict>
+			<key>chara-4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{250,0},{174,188}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{174,188}</string>
+			</dict>
+			<key>chara-5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{786,171},{174,166}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,166}</string>
+			</dict>
+			<key>chara-6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{612,0},{174,172}}</string>
+				<key>offset</key>
+				<string>{0,13}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{174,199}</string>
+			</dict>
+			<key>frame.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{960,0},{24,24}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{24,24}</string>
+			</dict>
+			<key>frame_red.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{984,0},{24,24}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{24,24}</string>
+			</dict>
+			<key>glass.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{250,248}}</string>
+				<key>offset</key>
+				<string>{0,-7}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{300,261}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>ui.png</string>
+			<key>realTextureFileName</key>
+			<string>ui.png</string>
+			<key>size</key>
+			<string>{1024,512}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>1024</integer>
+			<key>height</key>
+			<integer>512</integer>
+		</dict>
+	</dict>
+</plist>

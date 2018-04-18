@@ -1,0 +1,66 @@
+
+{
+	"class":"BattleCharacterView",
+	"property":{
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"atlas":"atlas/ui",
+					"default":"frame"
+				},
+				"x":0,
+				"y":0,
+				"sprite":{
+					"type":"sliced",
+					"width":120,
+					"height":120
+				}
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"key":"icon",
+					"atlas":"atlas/ui",
+					"target":"BattleCharacterView"
+				},
+				"sprite":{
+					"type":"simple",
+					"width":110,
+					"height":110
+				},
+				"x":5,
+				"y":5
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindTextView",
+			"property":{
+				"bind":{
+					"key":"name",
+					"target":"BattleCharacterView"
+				},
+				"x":150,
+				"y":20,
+				"textField":{
+					"textAlign":"center",
+					"color":"#000000",
+					"size":24
+				}
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}
