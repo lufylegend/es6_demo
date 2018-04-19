@@ -92,6 +92,26 @@
 					"childNodes":[
 							
 					]
+				},
+				{
+					"class":"BindSpriteView",
+					"property":{
+						"bind":{
+							"atlas":"atlas/common",
+							"default":"circle_48",
+							"target":"BattleSceneController"
+						},
+						"x":450,
+						"y":820,
+						"sprite":{
+							"type":"simple",
+							"width":120,
+							"height":120
+						}
+					},
+					"childNodes":[
+							
+					]
 				}
 			]
 		}

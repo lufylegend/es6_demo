@@ -18,5 +18,11 @@ class CharacterModel {
     get height() {
         return this.data.height;
     }
+    get y() {
+        return this.data.y;
+    }
+    get speed() {
+        return this.data.speed;
+    }
 }
 export default CharacterModel;

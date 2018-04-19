@@ -92,9 +92,17 @@ class CharacterView extends LSprite {
         this.stepY = 6;
         this.to = new LPoint(0, 0);
         this.layer = new LSprite();
-        this.layer.x = -16;
-        this.layer.y = -40;
+        //this.layer.x = -16;
+        //this.layer.y = -40;
         this.addChild(this.layer);
+
+        this.hpLayer = new LSprite();
+        this.hpLayer.x = (this.model.width * 32 - 64) * 0.5;
+        this.hpLayer.y = this.model.height * 24 - 10;
+        this.hpLayer.graphics.drawRect(1, '#000000', [0, 0, 64, 5], true, '#008800');
+        this.hpLayer.graphics.drawRect(1, '#000000', [0, 5, 64, 5], true, '#FF0000');
+        this.addChild(this.hpLayer);
+
         //this.addShape(LShape.RECT, [0, 0, BattleCharacterSize.width, BattleCharacterSize.height]);
         this.layer.addEventListener(LEvent.ENTER_FRAME, this._onframe, this);
         this._addAnimation();
@@ -186,13 +194,15 @@ class CharacterView extends LSprite {
         let oldBitmapData = this.anime.bitmap.bitmapData;
         bitmapData.setProperties(height * oldBitmapData.x / oldBitmapData.height >>> 0, 0, height, height);
         this.anime.bitmap.bitmapData = bitmapData;
+        this.anime.x = (this.model.width * 32 - height) * 0.5;
+        this.anime.y = this.model.y;
         //this.anime.bitmap.bitmapData.setCoordinate(oldBitmapData.x, oldBitmapData.y);
         this.anime.setList(CharacterView._getAnimationData(height * 28, height));
-        this.layer.x = (32 - height) * 0.5 + ((this.model.width + 1) % 2) * 16;
+        //this.layer.x = (32 - height) * 0.5 + ((this.model.width + 1) % 2) * 16;
         //this.layer.x = ((this.model.width % 2) * 32 - height) * 0.5;
-        this.layer.y = 24 - height;// this.model.height;
+        //this.layer.y = 24 - height;// this.model.height;
         //this.layer.y = -40;
-        this.anime.addShape(LShape.RECT, [0, 0, this.model.width * 32, this.model.height * 24]);
+        this.addShape(LShape.RECT, [0, 0, this.model.width * 32, this.model.height * 24]);
     }
     _addAnimation() {
         let bitmapData = new LBitmapData(Common.datalist[DEFAULT_CHARACTER_IMG], 0, 0, BattleCharacterSize.width, BattleCharacterSize.height);
