@@ -28,11 +28,11 @@ const PhotonEvent = {
 };
 let PhotonClient = (function(_super) {
     __photon_extends(PhotonClient, _super);
-    function PhotonClient(masterClicent) {
+    function PhotonClient(masterClient) {
         let _this = _super.call(this, window.Photon.ConnectionProtocol.Ws, AppInfo.AppId, AppInfo.AppVersion) || this;
         _this.logger = new window.Exitgames.Common.Logger('PhotonClient:', window.Exitgames.Common.Logger.Level.DEBUG);
         console.warn('Init', AppInfo.AppId, AppInfo.AppVersion);
-        _this.masterClicent = masterClicent;
+        _this.masterClient = masterClient;
         _this.logger.info('Init', AppInfo.AppId, AppInfo.AppVersion);
         _this.setLogLevel(window.Exitgames.Common.Logger.Level.DEBUG);
         return _this;
@@ -63,9 +63,9 @@ let PhotonClient = (function(_super) {
         this.myRoom().setEmptyRoomLiveTime(10000);
         this.createRoomFromMy(name || GLOBAL_ROOM_NAME);
     };
-    PhotonClient.prototype.start = function(id, name, enemys) {
+    PhotonClient.prototype.start = function(id, name, data) {
         let self = this;
-        self.myActor().setInfo(id, name, enemys);
+        self.myActor().setInfo(id, name, data);
         //self.myActor().setCustomProperty('auth', { enemys: enemys });
         self.connectToRegionMaster('EU');
     };
@@ -133,15 +133,15 @@ let PhotonClient = (function(_super) {
                 this.timeFlag = null;
             }
             console.error('------------battle start----------');
-            if (this.masterClicent && this.masterClicent.gameStart) {
-                this.masterClicent.gameStart();
+            if (this.masterClient && this.masterClient.gameStart) {
+                this.masterClient.gameStart();
             }
             break;
         default:
             break;
         }
-        if (this.masterClicent && this.masterClicent.onEvent) {
-            this.masterClicent.onEvent(code, content, actorNr);
+        if (this.masterClient && this.masterClient.onEvent) {
+            this.masterClient.onEvent(code, content, actorNr);
         }
     };
     PhotonClient.prototype.onStateChange = function(state) {

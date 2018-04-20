@@ -58,16 +58,6 @@ class BattlefieldView extends BindSpriteView {
                 ctx.moveTo(0, i * 24);
                 ctx.lineTo(576, i * 24);
             }
-
-            /*
-            for (let i = 0;i < 18;i++) {
-                ctx.moveTo(i * 32, 0);
-                ctx.lineTo(i * 32, 768);
-            }
-            for (let i = 0;i < 32;i++) {
-                ctx.moveTo(0, i * 24);
-                ctx.lineTo(576, i * 24);
-            }*/
             ctx.stroke();
         });
         this.addChild(sprite);
