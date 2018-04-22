@@ -257,54 +257,54 @@ CharacterView._getAnimationData = function(width = 1792, height = 64) {
 };
 CharacterView._setAnimationLabel = function(anime) {
     //ATTACK
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK, CharacterDirection.DOWN), 0, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK, CharacterDirection.UP), 1, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK, CharacterDirection.LEFT), 2, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK, CharacterDirection.RIGHT), 2, 0, 1, true);
+    anime.setLabel(`${CharacterAction.ATTACK}-${CharacterDirection.DOWN}`, 0, 0, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK}-${CharacterDirection.UP}`, 1, 0, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK}-${CharacterDirection.LEFT}`, 2, 0, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK}-${CharacterDirection.RIGHT}`, 2, 0, 1, true);
     
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK_START, CharacterDirection.DOWN), 0, 3, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK_START, CharacterDirection.UP), 1, 3, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK_START, CharacterDirection.LEFT), 2, 3, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.ATTACK_START, CharacterDirection.RIGHT), 2, 3, 1, true);
+    anime.setLabel(`${CharacterAction.ATTACK_START}-${CharacterDirection.DOWN}`, 0, 3, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK_START}-${CharacterDirection.UP}`, 1, 3, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK_START}-${CharacterDirection.LEFT}`, 2, 3, 1, false);
+    anime.setLabel(`${CharacterAction.ATTACK_START}-${CharacterDirection.RIGHT}`, 2, 3, 1, true);
     //MOVE
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MOVE, CharacterDirection.DOWN), 3, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MOVE, CharacterDirection.UP), 4, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MOVE, CharacterDirection.LEFT), 5, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MOVE, CharacterDirection.RIGHT), 5, 0, 1, true);
+    anime.setLabel(`${CharacterAction.MOVE}-${CharacterDirection.DOWN}`, 3, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MOVE}-${CharacterDirection.UP}`, 4, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MOVE}-${CharacterDirection.LEFT}`, 5, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MOVE}-${CharacterDirection.RIGHT}`, 5, 0, 1, true);
     //STAND
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.STAND, CharacterDirection.DOWN), 6, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.STAND, CharacterDirection.UP), 7, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.STAND, CharacterDirection.LEFT), 8, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.STAND, CharacterDirection.RIGHT), 8, 0, 1, true);
+    anime.setLabel(`${CharacterAction.STAND}-${CharacterDirection.DOWN}`, 6, 0, 1, false);
+    anime.setLabel(`${CharacterAction.STAND}-${CharacterDirection.UP}`, 7, 0, 1, false);
+    anime.setLabel(`${CharacterAction.STAND}-${CharacterDirection.LEFT}`, 8, 0, 1, false);
+    anime.setLabel(`${CharacterAction.STAND}-${CharacterDirection.RIGHT}`, 8, 0, 1, true);
     //PANT
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.PANT, CharacterDirection.DOWN), 9, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.PANT, CharacterDirection.UP), 9, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.PANT, CharacterDirection.LEFT), 9, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.PANT, CharacterDirection.RIGHT), 9, 0, 1, false);
+    anime.setLabel(`${CharacterAction.PANT}-${CharacterDirection.DOWN}`, 9, 0, 1, false);
+    anime.setLabel(`${CharacterAction.PANT}-${CharacterDirection.UP}`, 9, 0, 1, false);
+    anime.setLabel(`${CharacterAction.PANT}-${CharacterDirection.LEFT}`, 9, 0, 1, false);
+    anime.setLabel(`${CharacterAction.PANT}-${CharacterDirection.RIGHT}`, 9, 0, 1, false);
     //BLOCK
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.BLOCK, CharacterDirection.DOWN), 10, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.BLOCK, CharacterDirection.UP), 11, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.BLOCK, CharacterDirection.LEFT), 12, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.BLOCK, CharacterDirection.RIGHT), 12, 0, 1, true);
+    anime.setLabel(`${CharacterAction.BLOCK}-${CharacterDirection.DOWN}`, 10, 0, 1, false);
+    anime.setLabel(`${CharacterAction.BLOCK}-${CharacterDirection.UP}`, 11, 0, 1, false);
+    anime.setLabel(`${CharacterAction.BLOCK}-${CharacterDirection.LEFT}`, 12, 0, 1, false);
+    anime.setLabel(`${CharacterAction.BLOCK}-${CharacterDirection.RIGHT}`, 12, 0, 1, true);
     //HERT
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.HERT, CharacterDirection.DOWN), 13, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.HERT, CharacterDirection.UP), 13, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.HERT, CharacterDirection.LEFT), 13, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.HERT, CharacterDirection.RIGHT), 13, 0, 1, false);
+    anime.setLabel(`${CharacterAction.HERT}-${CharacterDirection.DOWN}`, 13, 0, 1, false);
+    anime.setLabel(`${CharacterAction.HERT}-${CharacterDirection.UP}`, 13, 0, 1, false);
+    anime.setLabel(`${CharacterAction.HERT}-${CharacterDirection.LEFT}`, 13, 0, 1, false);
+    anime.setLabel(`${CharacterAction.HERT}-${CharacterDirection.RIGHT}`, 13, 0, 1, false);
     //LEVELUP
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.WAKE, CharacterDirection.DOWN), 14, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.WAKE, CharacterDirection.UP), 14, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.WAKE, CharacterDirection.LEFT), 14, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.WAKE, CharacterDirection.RIGHT), 14, 0, 1, false);
+    anime.setLabel(`${CharacterAction.WAKE}-${CharacterDirection.DOWN}`, 14, 0, 1, false);
+    anime.setLabel(`${CharacterAction.WAKE}-${CharacterDirection.UP}`, 14, 0, 1, false);
+    anime.setLabel(`${CharacterAction.WAKE}-${CharacterDirection.LEFT}`, 14, 0, 1, false);
+    anime.setLabel(`${CharacterAction.WAKE}-${CharacterDirection.RIGHT}`, 14, 0, 1, false);
     //LEVELUP
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.LEVELUP, CharacterDirection.DOWN), 15, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.LEVELUP, CharacterDirection.UP), 16, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.LEVELUP, CharacterDirection.LEFT), 17, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.LEVELUP, CharacterDirection.RIGHT), 17, 0, 1, true);
+    anime.setLabel(`${CharacterAction.LEVELUP}-${CharacterDirection.DOWN}`, 15, 0, 1, false);
+    anime.setLabel(`${CharacterAction.LEVELUP}-${CharacterDirection.UP}`, 16, 0, 1, false);
+    anime.setLabel(`${CharacterAction.LEVELUP}-${CharacterDirection.LEFT}`, 17, 0, 1, false);
+    anime.setLabel(`${CharacterAction.LEVELUP}-${CharacterDirection.RIGHT}`, 17, 0, 1, true);
     //MAGIC_ATTACK
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MAGIC_ATTACK, CharacterDirection.DOWN), 18, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MAGIC_ATTACK, CharacterDirection.UP), 19, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MAGIC_ATTACK, CharacterDirection.LEFT), 20, 0, 1, false);
-    anime.setLabel(String.format('{0}-{1}', CharacterAction.MAGIC_ATTACK, CharacterDirection.RIGHT), 20, 0, 1, true);
+    anime.setLabel(`${CharacterAction.MAGIC_ATTACK}-${CharacterDirection.DOWN}`, 18, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MAGIC_ATTACK}-${CharacterDirection.UP}`, 19, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MAGIC_ATTACK}-${CharacterDirection.LEFT}`, 20, 0, 1, false);
+    anime.setLabel(`${CharacterAction.MAGIC_ATTACK}-${CharacterDirection.RIGHT}`, 20, 0, 1, true);
 };
 export default CharacterView;

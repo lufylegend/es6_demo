@@ -1,8 +1,9 @@
 import PrefabContainer from '../../../plugin/mvc/prefabs/PrefabContainer';
-import SceneController from '../../../plugin/mvc/controllers/SceneController';
-import BaseManager from '../../../plugin/mvc/managers/BaseManager';
+import PanelController from '../../../plugin/mvc/controllers/PanelController';
+//import BaseManager from '../../../plugin/mvc/managers/BaseManager';
+import masterClient from '../../utils/MasterClient';
 
-class BattleSceneController extends SceneController {
+class BattlePanelController extends PanelController {
     onLoad(request) {
         super.onLoad(request);
         this.dispatcher.cards = [
@@ -15,18 +16,13 @@ class BattleSceneController extends SceneController {
             { id: 7, name: '狮子', icon: 'pig', cost: 2 }, 
             { id: 8, name: '狮子', icon: 'rabbit', cost: 3 }
         ];
-        console.log('BattleSceneController onLoad');
+        console.log('BattlePanelController onLoad');
     }
     onLoadEnd() {
         super.onLoadEnd();
-        BaseManager.loadPanel('prefabs/panel/Marching');
-    }
-    roomIn() {
-        BaseManager.loadPanel('prefabs/panel/Battle');
-    }
-    gotoTopScene(event, param) {
-        BaseManager.loadScene('prefabs/Scene/Top');
+        console.log('BattlePanelController onLoadEnd', this.battleCardListView);
+        masterClient.battleReady();
     }
 }
-PrefabContainer.set('BattleSceneController', BattleSceneController);
-export default BattleSceneController;
+PrefabContainer.set('BattlePanelController', BattlePanelController);
+export default BattlePanelController;

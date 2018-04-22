@@ -1,8 +1,9 @@
 //import { ClientEvent } from './MasterClient';
 
 class AIPlayer {
-    constructor() {
-        this._photonPlayer = new window.PhotonPlayer();
+    constructor(client) {
+        this.client = client;
+        this._photonPlayer = new window.PhotonPlayer(client);
     }
     get actor() {
         return this._photonPlayer;

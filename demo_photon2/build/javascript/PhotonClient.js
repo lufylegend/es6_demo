@@ -24,7 +24,7 @@ let __photon_extends = (this && this.__extends) || (function() {
 })();
 const PhotonEvent = {
     BUILD: 101,
-    BATTLE_START: 102
+    GAME_START: 102
 };
 let PhotonClient = (function(_super) {
     __photon_extends(PhotonClient, _super);
@@ -127,7 +127,7 @@ let PhotonClient = (function(_super) {
                 this.leaveRoom();
             }
             break;
-        case PhotonEvent.BATTLE_START:
+        case PhotonEvent.GAME_START:
             if (this.timeFlag) {
                 clearTimeout(this.timeFlag);
                 this.timeFlag = null;
@@ -196,7 +196,7 @@ let PhotonClient = (function(_super) {
         //console.error('onJoinRoom myRoom', this.myRoom().name, this.myRoomActorsArray());
         if (this.myRoom().name !== GLOBAL_ROOM_NAME) {
             if (this.myRoomActorsArray().length === 2) {
-                this.raiseEventAll(PhotonEvent.BATTLE_START, { });
+                this.raiseEventAll(PhotonEvent.GAME_START, { });
             } else {
                 let self = this;
                 this.timeFlag = setTimeout(function() {
@@ -300,6 +300,7 @@ let PhotonPlayer = (function(_super) {
     return PhotonPlayer;
 }(window.Photon.LoadBalancing.Actor));
 window.PhotonClient = PhotonClient;
+window.PhotonPlayer = PhotonPlayer;
 /*
 let loadBalancingClient;
 window.onload = function() {

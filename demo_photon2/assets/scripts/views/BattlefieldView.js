@@ -3,7 +3,7 @@ import PrefabContainer from '../../plugin/mvc/prefabs/PrefabContainer';
 import EventManager from '../managers/EventManager';
 import BindSpriteView from '../../plugin/mvc/views/BindSpriteView';
 import CharacterView from './CharacterView';
-//import MasterClient from '../utils/MasterClient';
+import MasterClient from '../utils/MasterClient';
 import LPoint from '../../plugin/lufylegend/geom/LPoint';
 import LSprite from '../../plugin/lufylegend/display/LSprite';
 import ConfigManager from '../managers/ConfigManager';
@@ -63,16 +63,18 @@ class BattlefieldView extends BindSpriteView {
         this.addChild(sprite);
         this.characterLayer = new LSprite();
         this.addChild(this.characterLayer);
-
+        console.log('Battlefield update');
+        //MasterClient.
+        /*
         for (let child of mainCharacters) {
             let character = new CharacterView({ id: child.id, level: 1, playerId: 1 });
             character.setCoordinate(child.x * 32, child.y * 24);
             this.characterLayer.addChild(character);
-
+            
             let enemy = new CharacterView({ id: child.id, level: 1, playerId: 1 });
             enemy.setCoordinate((18 - child.x - character.model.width) * 32, (32 - child.y - character.model.height) * 24);
             this.characterLayer.addChild(enemy);
-        }
+        }*/
     }
     _dragEnd(event) {
         let hit = this.hitTestPoint(event.x, event.y);

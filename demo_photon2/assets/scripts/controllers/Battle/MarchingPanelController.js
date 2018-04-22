@@ -1,8 +1,9 @@
 import PrefabContainer from '../../../plugin/mvc/prefabs/PrefabContainer';
-import SceneController from '../../../plugin/mvc/controllers/SceneController';
+import PanelController from '../../../plugin/mvc/controllers/PanelController';
 import BaseManager from '../../../plugin/mvc/managers/BaseManager';
+import masterClient, { GameEvent } from '../../utils/MasterClient';
 
-class BattleSceneController extends SceneController {
+class MarchingPanelController extends PanelController {
     onLoad(request) {
         super.onLoad(request);
         this.dispatcher.cards = [
@@ -15,18 +16,25 @@ class BattleSceneController extends SceneController {
             { id: 7, name: '狮子', icon: 'pig', cost: 2 }, 
             { id: 8, name: '狮子', icon: 'rabbit', cost: 3 }
         ];
-        console.log('BattleSceneController onLoad');
+        console.log('MarchingPanelController onLoad');
     }
     onLoadEnd() {
         super.onLoadEnd();
-        BaseManager.loadPanel('prefabs/panel/Marching');
+        masterClient.addEventListener(GameEvent.ROOM_IN, this.roomIn, this);
+        let key = 100000000 * Math.random() >>> 0;
+        let id = `id.${key}`;
+        let name = `name.${key}`;
+        masterClient.ai = true;
+        masterClient.start(id, name, {});
+        console.log('MarchingPanelController onLoadEnd');
     }
     roomIn() {
-        BaseManager.loadPanel('prefabs/panel/Battle');
+        masterClient.removeEventListener(GameEvent.ROOM_IN, this.roomIn);
+        this.sceneController.roomIn();
     }
     gotoTopScene(event, param) {
         BaseManager.loadScene('prefabs/Scene/Top');
     }
 }
-PrefabContainer.set('BattleSceneController', BattleSceneController);
-export default BattleSceneController;
+PrefabContainer.set('MarchingPanelController', MarchingPanelController);
+export default MarchingPanelController;

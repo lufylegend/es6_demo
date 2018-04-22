@@ -1,5 +1,5 @@
 import AIPlayer from './AIPlayer';
-import LEvent from '../../plugin/lufylegend/events/LEvent';
+//import LEvent from '../../plugin/lufylegend/events/LEvent';
 
 class AIClient {
     constructor(masterClient) {
@@ -7,7 +7,7 @@ class AIClient {
         this._init();
     }
     _init() {
-        this.aiPlayer = new AIPlayer();
+        this.aiPlayer = new AIPlayer(this);
         this._myRoomActorsArray = [];
         this._myRoomActorsArray.push(this.myActor());
         this._myRoomActorsArray.push(this.aiPlayer.actor);
@@ -27,6 +27,15 @@ class AIClient {
     myRoomActorsArray() {
         return this._myRoomActorsArray;
     }
+    raiseEventAll() {
+        
+    }
+    setUserId(id) {
+        console.error('AIClient setUserId=' + id);
+    }
+    updatePlayerOnlineList() {
+        console.error('updatePlayerOnlineList');
+    }
     get enemy() {
         return this.client.myRoomActorsArray()[1];
     }
@@ -34,7 +43,7 @@ class AIClient {
         return this.client.myRoomActorsArray()[0];
     }
     myActor() {
-        this._myActor = this._myActor || new window.PhotonPlayer();
+        this._myActor = this._myActor || new window.PhotonPlayer(this);
         return this._myActor;
     }
 }

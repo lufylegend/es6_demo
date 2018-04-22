@@ -22,6 +22,7 @@
 				},
 				"x":0,
 				"y":0,
+				"name":"panel",
 				"sprite":{
 					"type":"sliced",
 					"width":576,
@@ -37,82 +38,6 @@
 			},
 			"childNodes":[
 					
-			]
-		},
-		{
-			"class":"BindSpriteView",
-			"property":{
-				"bind":{
-					"atlas":"atlas/common",
-					"default":"circle_24",
-					"target":"BattleSceneController"
-				},
-				"x":0,
-				"y":0,
-				"sprite":{
-					"type":"sliced",
-					"width":640,
-					"height":960
-				}
-			},
-			"childNodes":[
-				{
-					"class":"BattlefieldView",
-					"property":{
-						"bind":{
-							"atlas":"atlas/common",
-							"default":"frame_001",
-							"target":"BattleSceneController",
-							"toParent":"battleLayer"
-						},
-						"x":32,
-						"y":32,
-						"sprite":{
-							"type":"sliced",
-							"width":576,
-							"height":768
-						}
-					},
-					"childNodes":[
-							
-					]
-				},
-				{
-					"class":"BattleCardListView",
-					"property":{
-						"bind":{
-							"key":"cards",
-							"childPrefab":"prefabs/dialog/BattleCard",
-							"target":"BattleSceneController",
-							"toParent":"battleCardListView"
-						},
-						"x":32,
-						"y":820
-					},
-					"childNodes":[
-							
-					]
-				},
-				{
-					"class":"BindSpriteView",
-					"property":{
-						"bind":{
-							"atlas":"atlas/common",
-							"default":"circle_48",
-							"target":"BattleSceneController"
-						},
-						"x":450,
-						"y":820,
-						"sprite":{
-							"type":"simple",
-							"width":120,
-							"height":120
-						}
-					},
-					"childNodes":[
-							
-					]
-				}
 			]
 		}
 	]
