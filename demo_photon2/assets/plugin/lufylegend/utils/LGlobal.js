@@ -140,7 +140,19 @@ let LGlobal = (function() {
     };
     LGlobal.ll_createCanvas = function(id, w, h) {
         LGlobal.id = id;
-        LGlobal.object = document.getElementById(id);
+        if (LGlobal.isWeixin) {
+            let element = document.getElementsByTagName('canvas');
+            for (let index = 0; index < element.length; index++) {
+                element[index].parentNode.removeChild(element[index]);
+            }
+            if (!LGlobal.object) {
+                LGlobal.object = document.createElement('div');
+                LGlobal.object.id = id;
+                document.body.appendChild(LGlobal.object);
+            }
+        } else {
+            LGlobal.object = document.getElementById(id);
+        }
         LGlobal.object.innerHTML = '<div style="position:absolute;margin:0;padding:0;overflow:visible;-webkit-transform: translateZ(0);z-index:0;">' +
   '<canvas id="' + LGlobal.id + '_canvas" style="margin:0;padding:0;width:' + w + 'px;height:' + h + 'px;">' +
   '<div id="noCanvas">' +
