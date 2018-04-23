@@ -2,9 +2,6 @@ import BaseController from './BaseController';
 import LTimer from '../../lufylegend/utils/LTimer';
 import LTimerEvent from '../../lufylegend/events/LTimerEvent';
 class SceneController extends BaseController {
-    constructor(data) {
-        super(data);
-    }
     init(data) {
         super.init(data);
         this._waitExecuteFuncs = [];

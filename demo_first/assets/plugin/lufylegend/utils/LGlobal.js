@@ -13,6 +13,21 @@ import { addChild } from '../utils/Function';
 import LSprite from '../display/LSprite';
 import ll from '../ll';
 let LGlobal = (function() {
+    if (!Array.isArray) {
+        Array.isArray = function(value) {
+            return Object.prototype.toString.apply(value) === '[object Array]';
+        };
+    }
+    if (!String.format) {
+        String.format = function(format) {
+            let args = Array.prototype.slice.call(arguments, 1);
+            return format.replace(/{(\d+)}/g, function(match, number) { 
+                return typeof args[number] !== 'undefined'
+                    ? args[number] 
+                    : match;
+            });
+        };
+    }
     function LGlobal() {
         throw 'LGlobal cannot be instantiated';
     }
@@ -125,17 +140,18 @@ let LGlobal = (function() {
     };
     LGlobal.ll_createCanvas = function(id, w, h) {
         LGlobal.id = id;
-        if(LGlobal.isWeixin){
+        LGlobal.isWeixin = true;
+        if (LGlobal.isWeixin) {
             let element = document.getElementsByTagName('canvas');
-            for (index = 0; index < element.length; index++) {
+            for (let index = 0; index < element.length; index++) {
                 element[index].parentNode.removeChild(element[index]);
             }
-            if(!LGlobal.object){
+            if (!LGlobal.object) {
                 LGlobal.object = document.createElement('div');
                 LGlobal.object.id = id;
                 document.body.appendChild(LGlobal.object);
             }
-        }else{
+        } else {
             LGlobal.object = document.getElementById(id);
         }
         LGlobal.object.innerHTML = '<div style="position:absolute;margin:0;padding:0;overflow:visible;-webkit-transform: translateZ(0);z-index:0;">' +
