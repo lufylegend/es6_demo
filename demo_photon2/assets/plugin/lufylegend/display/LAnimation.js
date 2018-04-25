@@ -2,7 +2,6 @@ import LSprite from './LSprite';
 import LEvent from '../events/LEvent';
 import { UNDEFINED } from '../utils/LConstant';
 import lufylegend from '../ll';
-import LAnimationTimeline from './LAnimationTimeline';
 class LAnimation extends LSprite {
     constructor(layer, data, list) {
         super();
@@ -27,9 +26,7 @@ class LAnimation extends LSprite {
         this.onframe();
         this.colIndex = 0;
     }
-    setList(list) {
-        this.imageArray = list;
-    }
+
     setAction(rowIndex, colIndex, mode, isMirror) {
         let s = this, changed = false;
         if (typeof rowIndex !== UNDEFINED && rowIndex >= 0 && rowIndex < s.imageArray.length) {
@@ -84,7 +81,7 @@ class LAnimation extends LSprite {
                     let obj = arr.script[i];
                     let l = s.ll_labelList[obj.name];
                     if (l && l.rowIndex === s.rowIndex && l.colIndex === s.colIndex && l.mode === s.mode && l.isMirror === (s.bitmap.scaleX === -1)) {
-                        obj.func.call(this, s, obj.params);
+                        obj.func(s, obj.params);
                     }
                 }
             }
@@ -112,7 +109,8 @@ class LAnimation extends LSprite {
         s.colIndex += s.mode;
         if (s.colIndex >= s.imageArray[s.rowIndex].length || s.colIndex < 0) {
             s.colIndex = s.mode > 0 ? 0 : s.imageArray[s.rowIndex].length - 1;
-            if (s instanceof LAnimationTimeline) {
+            //TODO::
+            if (s.constructor.name === 'LAnimationTimeline') {
                 s._send_complete = true;
             } else {
                 s.dispatchEvent(LEvent.COMPLETE);

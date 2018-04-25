@@ -13,21 +13,6 @@ import { addChild } from '../utils/Function';
 import LSprite from '../display/LSprite';
 import ll from '../ll';
 let LGlobal = (function() {
-    if (!Array.isArray) {
-        Array.isArray = function(value) {
-            return Object.prototype.toString.apply(value) === '[object Array]';
-        };
-    }
-    if (!String.format) {
-        String.format = function(format) {
-            let args = Array.prototype.slice.call(arguments, 1);
-            return format.replace(/{(\d+)}/g, function(match, number) { 
-                return typeof args[number] !== 'undefined'
-                    ? args[number] 
-                    : match;
-            });
-        };
-    }
     function LGlobal() {
         throw 'LGlobal cannot be instantiated';
     }
@@ -55,6 +40,7 @@ let LGlobal = (function() {
     LGlobal.align = 'M';
     LGlobal.mobile = false;
     LGlobal.canTouch = false;
+    LGlobal.wx = false;
     LGlobal.os = OS_PC;
     LGlobal.ios = false;
     LGlobal.android = false;
@@ -72,6 +58,9 @@ let LGlobal = (function() {
     })();
     LGlobal.window = window;
     (function(n) {
+        if(typeof wx !== 'undefined' && typeof GameGlobal !== 'undefined'){
+            LGlobal.wx = true;
+        }
         LGlobal.isOldFirefox = (function(un) {
             let i = un.toLowerCase().indexOf('firefox');
             if (i < 0) {
@@ -140,19 +129,28 @@ let LGlobal = (function() {
     };
     LGlobal.ll_createCanvas = function(id, w, h) {
         LGlobal.id = id;
-        if (LGlobal.isWeixin) {
+        LGlobal.isWeixin = true;
+        LGlobal.object = document.getElementById(id);
+        /*if(!LGlobal.object){
             let element = document.getElementsByTagName('canvas');
             for (let index = 0; index < element.length; index++) {
-                element[index].parentNode.removeChild(element[index]);
+                element[index].style.display = 'none';
+                //element[index].parentNode.removeChild(element[index]);
             }
-            if (!LGlobal.object) {
-                LGlobal.object = document.createElement('div');
-                LGlobal.object.id = id;
-                document.body.appendChild(LGlobal.object);
-            }
-        } else {
-            LGlobal.object = document.getElementById(id);
+            LGlobal.object = document.createElement('div');
+            LGlobal.object.id = id;
+            document.body.appendChild(LGlobal.object);
         }
+        let div1 = document.createElement('div');
+        div1.style.position = 'absolute';
+        LGlobal.object.appendChild(div1);
+        
+        LGlobal.canvasObj = document.createElement('canvas');
+        LGlobal.canvasObj.id = LGlobal.id + '_canvas';
+        LGlobal.canvasObj.style.width = w + 'px';
+        LGlobal.canvasObj.style.height = h + 'px';
+        LGlobal.object.appendChild(LGlobal.canvasObj);
+
         LGlobal.object.innerHTML = '<div style="position:absolute;margin:0;padding:0;overflow:visible;-webkit-transform: translateZ(0);z-index:0;">' +
   '<canvas id="' + LGlobal.id + '_canvas" style="margin:0;padding:0;width:' + w + 'px;height:' + h + 'px;">' +
   '<div id="noCanvas">' +
@@ -164,6 +162,8 @@ let LGlobal = (function() {
   '<input type="text" id="' + LGlobal.id + '_InputTextBox"  style="background:transparent;border:0px;" />' +
   '<input type="password" id="' + LGlobal.id + '_passwordBox"  style="background:transparent;border:0px;" /></div>';
         LGlobal.canvasObj = document.getElementById(LGlobal.id + '_canvas');
+        */
+       LGlobal.canvasObj = document.getElementsByTagName('canvas')[0];
         LGlobal._canvas = document.createElement('canvas');
         LGlobal._context = LGlobal._canvas.getContext('2d');
         if (LGlobal._context) {

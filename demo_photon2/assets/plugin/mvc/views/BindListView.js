@@ -4,8 +4,8 @@ import { LListView, LListChildView } from '../../lufylegend/lib/ui/LListView';
 import LNode from '../prefabs/LNode';
 import PrefabContainer from '../prefabs/PrefabContainer';
 class BindListView extends BaseBindView {
-    init(data) {
-        super.init(data);
+    init() {
+        super.init();
         this._listView = new LListView();
         this.addChild(this._listView);
     }
@@ -16,13 +16,6 @@ class BindListView extends BaseBindView {
             return;
         }
         let listView = this._listView;
-        
-        listView.scrollBarHorizontal.showCondition === LListView.ScrollBarCondition.Always;
-        listView.scrollBarVertical.showCondition === LListView.ScrollBarCondition.Always;
-        
-        listView.arrangement = LListView.Direction.Horizontal;
-        listView.movement = LListView.Direction.Vertical;
-
         for (let key in this.listView) {
             let value = this.listView[key];
             switch (key) {
@@ -32,14 +25,17 @@ class BindListView extends BaseBindView {
             case 'maxPerLine':
             case 'cellWidth':
             case 'cellHeight':
-            case 'arrangement':
-            case 'movement':
                 listView[key] = value;
                 break;
             default:
                 break;
             }
         }
+        listView.scrollBarHorizontal.showCondition === LListView.ScrollBarCondition.Always;
+        listView.scrollBarVertical.showCondition === LListView.ScrollBarCondition.Always;
+        
+        listView.arrangement = LListView.Direction.Horizontal;
+        listView.movement = LListView.Direction.Vertical;
         let childPrefab = this.bind.childPrefab;
         return BaseManager.loadPrefab(childPrefab)
             .then((data) => {
@@ -55,12 +51,6 @@ class BindListView extends BaseBindView {
         listChild.addChild(node);
         node.updateWidget(model);
         this._listView.insertChildView(listChild);
-    }
-    getItems() {
-        let _items = this._listView.getItems();
-        return _items.map((child) => {
-            return child.getChildAt(0);
-        });
     }
 }
 PrefabContainer.set('BindListView', BindListView);

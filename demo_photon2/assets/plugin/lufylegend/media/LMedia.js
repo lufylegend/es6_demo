@@ -2,7 +2,7 @@ import LDisplayObject from '../display/LDisplayObject';
 import LGlobal from '../utils/LGlobal';
 import { UNDEFINED } from '../utils/LConstant';
 import LEvent from '../events/LEvent';
-import LSound from './LSound';
+import lufylegend from '../ll';
 class LMedia extends LDisplayObject {
     constructor() {
         super();
@@ -13,7 +13,7 @@ class LMedia extends LDisplayObject {
         this.oncomplete = null;
         this.onsoundcomplete = null;
         this.currentStart = 0;
-        LSound.Container.add(this);
+        lufylegend.LSound.Container.add(this);
     }
 	
     onload() {
@@ -100,7 +100,7 @@ class LMedia extends LDisplayObject {
             return;
         }
         if (LGlobal.android) {
-            LSound.Container.stopOther(this);
+            lufylegend.LSound.Container.stopOther(this);
         }
         if (typeof c !== UNDEFINED) {
             s.data.currentTime = c;
@@ -167,12 +167,12 @@ class LMedia extends LDisplayObject {
             s._ll_duration = s.data.duration;
             s.length = s.data.duration - (LGlobal.android ? 0.1 : 0);
         }
-        if (s.currentTimeTo < s.data.currentTime + LSound.Container.time * 0.005) {
+        if (s.currentTimeTo < s.data.currentTime + lufylegend.LSound.Container.time * 0.005) {
             s._onended();
         }
     }
     die() {
-        LSound.Container.remove(this);
+        lufylegend.LSound.Container.remove(this);
     }
 }
 export default LMedia;

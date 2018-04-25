@@ -1,6 +1,21 @@
 import ll from '../ll';
 import LEvent from '../events/LEvent';
 import { LANDSCAPE, PORTRAIT } from '../utils/LConstant';
+if (!Array.isArray) {
+    Array.isArray = function(value) {
+        return Object.prototype.toString.apply(value) === '[object Array]';
+    };
+}
+if (!String.format) {
+    String.format = function(format) {
+        let args = Array.prototype.slice.call(arguments, 1);
+        return format.replace(/{(\d+)}/g, function(match, number) { 
+            return typeof args[number] !== 'undefined'
+                ? args[number] 
+                : match;
+        });
+    };
+}
 export function trace() {
     if (!ll.LGlobal.traceDebug) return;
     let t = document.getElementById('traceObject'), i;

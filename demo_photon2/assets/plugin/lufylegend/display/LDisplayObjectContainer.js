@@ -18,7 +18,7 @@ class LDisplayObjectContainer extends LInteractiveObject {
         d.parent = s;
         s.childList.push(d);
         s.numChildren = s.childList.length;
-        d._ll_removeFromSelf = false;
+        s._ll_removeFromSelf = false;
         return d;
     }
     addChildAt(d, i) {
@@ -35,7 +35,7 @@ class LDisplayObjectContainer extends LInteractiveObject {
         d.parent = s;
         s.childList.splice(i, 0, d);
         s.numChildren = s.childList.length;
-        d._ll_removeFromSelf = false;
+        s._ll_removeFromSelf = false;
         return d;
     }
     removeChild(d) {

@@ -58,8 +58,8 @@ class LMouseEventContainer {
             }
         }
     }
-    addEvent(o, list, f, _this) {
-        list.push({ container: o, listener: f, _this: _this });
+    addEvent(o, list, f) {
+        list.push({ container: o, listener: f });
     }
     removeEvent(o, list, f) {
         let i, l;
@@ -70,44 +70,44 @@ class LMouseEventContainer {
             }
         }
     }
-    addMouseDownEvent(o, f, _this) {
+    addMouseDownEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseDownContainer, f, _this);
+        s.addEvent(o, s.mouseDownContainer, f);
     }
-    addMouseUpEvent(o, f, _this) {
+    addMouseUpEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseUpContainer, f, _this);
+        s.addEvent(o, s.mouseUpContainer, f);
     }
-    addMouseMoveEvent(o, f, _this) {
+    addMouseMoveEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseMoveContainer, f, _this);
+        s.addEvent(o, s.mouseMoveContainer, f);
     }
-    addMouseOverEvent(o, f, _this) {
+    addMouseOverEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseOverContainer, f, _this);
+        s.addEvent(o, s.mouseOverContainer, f);
     }
-    addMouseOutEvent(o, f, _this) {
+    addMouseOutEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseOutContainer, f, _this);
+        s.addEvent(o, s.mouseOutContainer, f);
     }
-    addMouseDblEvent(o, f, _this) {
+    addMouseDblEvent(o, f) {
         let s = this;
-        s.addEvent(o, s.mouseDblContainer, f, _this);
+        s.addEvent(o, s.mouseDblContainer, f);
     }
-    addMouseEvent(o, t, f, _this) {
+    addMouseEvent(o, t, f) {
         let s = this;
         if (t === LMouseEvent.MOUSE_DOWN) {
-            s.addMouseDownEvent(o, f, _this);
+            s.addMouseDownEvent(o, f);
         } else if (t === LMouseEvent.MOUSE_UP) {
-            s.addMouseUpEvent(o, f, _this);
+            s.addMouseUpEvent(o, f);
         } else if (t === LMouseEvent.MOUSE_OVER) {
-            s.addMouseOverEvent(o, f, _this);
+            s.addMouseOverEvent(o, f);
         } else if (t === LMouseEvent.MOUSE_OUT) {
-            s.addMouseOutEvent(o, f, _this);
+            s.addMouseOutEvent(o, f);
         } else if (t === LMouseEvent.MOUSE_MOVE) {
-            s.addMouseMoveEvent(o, f, _this);
+            s.addMouseMoveEvent(o, f);
         } else {
-            s.addMouseDblEvent(o, f, _this);
+            s.addMouseDblEvent(o, f);
         }
     }
     hasEventListener(o, t, f) {
@@ -234,7 +234,7 @@ class LMouseEventContainer {
             event.event_type = type;
             event.selfX = (event.offsetX - o.co.x - o.sp.x) / (o.co.scaleX * o.sp.scaleX);
             event.selfY = (event.offsetY - o.co.y - o.sp.y) / (o.co.scaleY * o.sp.scaleY);
-            o.listener.call(o._this ? o._this : o, event, o.sp);
+            o.listener(event, o.sp);
         }
     }
     dispatchEvent(event, list, type) {
@@ -261,7 +261,7 @@ class LMouseEventContainer {
                 if (type !== LMouseEvent.MOUSE_UP) {
                     sp.ll_mousein = true;
                 }
-                st.push({ sp: sp, co: co, listener: list[i].listener, _this: list[i]._this });
+                st.push({ sp: sp, co: co, listener: list[i].listener });
             } else {
                 if (type !== LMouseEvent.MOUSE_OUT && type !== LMouseEvent.MOUSE_OVER) {
                     continue;
@@ -270,7 +270,7 @@ class LMouseEventContainer {
                     continue;
                 }
                 sp.ll_mousein = false;
-                st.push({ sp: sp, co: co, listener: list[i].listener, _this: list[i]._this });
+                st.push({ sp: sp, co: co, listener: list[i].listener });
             }
         }
         if (st.length === 0) {

@@ -1,13 +1,13 @@
 import LObject from '../utils/LObject';
-import { UNDEFINED } from '../utils/LConstant';
+import lufylegend from '../ll';
 class LEventDispatcher extends LObject {
     constructor() {
         super();
         this._eventList = [];
     }
 
-    addEventListener(type, listener, _this) {
-        this._eventList.push({ listener: listener, type: type, _this: _this });
+    addEventListener(type, listener) {
+        this._eventList.push({ listener: listener, type: type });
     }
     removeEventListener(type, listener) {
         let i, length;
@@ -29,13 +29,12 @@ class LEventDispatcher extends LObject {
         let length = this._eventList.length;
         let ctype = (typeof event === 'string') ? event : event.eventType;
         for (let i = 0; i < length; i++) {
-            let child = this._eventList[i];
-            if (!child) {
+            if (!this._eventList[i]) {
                 continue;
             }
             if (ctype === this._eventList[i].type) {
                 if (typeof event === 'string') {
-                    child.listener.call(child._this ? child._this : this, {
+                    this._eventList[i].listener({
                         currentTarget: this,
                         target: this,
                         eventType: ctype,
@@ -49,7 +48,7 @@ class LEventDispatcher extends LObject {
                         event.currentTarget = event.target;
                     }
                     event._ll_preventDefault = false;
-                    child.listener.call(child._this ? child._this : this, event);
+                    this._eventList[i].listener(event);
                     if (event._ll_preventDefault) {
                         return false;
                     }
@@ -65,7 +64,7 @@ class LEventDispatcher extends LObject {
                 continue;
             }
             if (type === this._eventList[i].type) {
-                if (typeof listener === UNDEFINED || listener === this._eventList[i].listener) {
+                if (typeof listener === 'undefined' || listener === this._eventList[i].listener) {
                     return true;
                 }
             }
@@ -73,4 +72,5 @@ class LEventDispatcher extends LObject {
         return false;
     }
 }
+lufylegend.LEventDispatcher = LEventDispatcher;
 export default LEventDispatcher;

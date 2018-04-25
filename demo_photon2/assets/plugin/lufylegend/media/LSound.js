@@ -92,5 +92,5 @@ setTimeout(() => {
         }
     }
 });
-
+lufylegend.LSound = LSound;
 export default LSound;

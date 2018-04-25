@@ -8,23 +8,21 @@ class LInteractiveObject extends LDisplayObject {
         this.mouseEnabled = true;
         this.mouseList = [];
     }
-    addEventListener(type, listener, _this) {
+    addEventListener(type, listener) {
         let s = this;
         if (type.indexOf('mouse') >= 0 || type.indexOf('touch') >= 0 || type === LMouseEvent.DOUBLE_CLICK) {
             if (LMouseEventContainer.container[type] || ((type === LMouseEvent.MOUSE_OVER || type === LMouseEvent.MOUSE_OUT) && LMouseEventContainer.container[LMouseEvent.MOUSE_MOVE])) {
-                LMouseEventContainer.addMouseEvent(s, type, listener, _this);
+                LMouseEventContainer.addMouseEvent(s, type, listener);
                 return;
             }
             s.mouseList.push({
                 listener: listener,
-                type: type,
-                _this: _this
+                type: type
             });
         } else {
             s._eventList.push({
                 listener: listener,
-                type: type,
-                _this: _this
+                type: type
             });
         }
     }

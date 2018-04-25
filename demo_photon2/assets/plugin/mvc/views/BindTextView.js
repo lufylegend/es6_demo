@@ -2,8 +2,8 @@ import BaseBindView from './BaseBindView';
 import LTextField from '../../lufylegend/text/LTextField';
 import PrefabContainer from '../prefabs/PrefabContainer';
 class BindTextView extends BaseBindView {
-    init(data) {
-        super.init(data);
+    init() {
+        super.init();
         this._label = new LTextField();
         this.addChild(this._label);
         if (this.textField) {

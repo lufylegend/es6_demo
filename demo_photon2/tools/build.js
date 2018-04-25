@@ -2,6 +2,8 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 const commonJson = require('./prefab-class.json');
+const DOMParser = require('dom-parser');
+
 let imports = [];
 for (let key of Object.keys(commonJson)) {
     imports.push(`import ${key} from "${commonJson[key]}";`);
@@ -109,6 +111,55 @@ function writeFile(path, text) {
         });
     });
 }
+function createPlistJson() {
+    return new Promise(function(resolve, reject) {
+        let plists = readFiles('./assets/resources', /.*\.plist$/);
+        for (let plist of plists) {
+            let prefabContext = fs.readFileSync(plist, 'utf8');
+            let data = getPlistData(prefabContext);
+            let metaPath = `${plist}.meta`;
+            fs.writeFileSync(metaPath, data);
+        }
+        resolve();
+    });
+}
+function getPlistData(xml) {
+    let parser = new DOMParser();
+    let xmlDom = parser.parseFromString(xml);
+    for (let key in xmlDom.getElementsByTagName('dict')[2].childNodes) {
+        console.log(xmlDom.getElementsByTagName('dict')[2].childNodes[key].nodeName);
+    }
+    console.log(xmlDom.getElementsByTagName('dict')[2].childNodes[1].nodeName);
+    let plistDom = xmlDom.querySelector('plist').querySelector('dict');
+    let children = plistDom.children;
+    let frames;
+    for (let i = 0;i < children.length; i++) {
+        let child = children[i];
+        if (child.tagName === 'key' && child.textContent === 'frames') {
+            frames = children[i + 1].children;
+            break;
+        }
+    }
+    let _textureData = {};
+    for (let i = 0;i < frames.length; i += 2) {
+        let key = frames[i].textContent.replace('.png', '');
+        let value = frames[i + 1];
+        let data = _getTextureData(value.children);
+        _textureData[key] = data;
+    }
+    return JSON.stringify(_textureData);
+}
+function _getTextureData(children) {
+    let data = {};
+    for (let i = 0;i < children.length; i += 2) {
+        let key = children[i].textContent;
+        let tict = children[i + 1];
+        let value = JSON.parse(tict.tagName === 'string' ? tict.textContent.replace(/\{/g, '[').replace(/\}/g, ']') : tict.tagName);
+        data[key] = value;
+    }
+    return data;
+}
+
 function createMeta() {
     return new Promise(function(resolve, reject) {
         let prefabs = readFiles('./assets/resources', /.*\.prefab$/);
@@ -143,6 +194,9 @@ function filesRestore() {
 }
 
 createMeta()
+    .then(() => {
+        return createPlistJson();
+    })
     .then(() => {
         return readFile(applicationPath);
     })

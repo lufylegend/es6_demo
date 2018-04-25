@@ -1,10 +1,12 @@
 import BaseBindView from './BaseBindView';
 import LAtlas from '../../lufylegend/system/LAtlas';
 import PrefabContainer from '../prefabs/PrefabContainer';
-import LShape from '../../lufylegend/display/LShape';
 class BindSpriteView extends BaseBindView {
-    init(data) {
-        super.init(data);
+    constructor(data) {
+        super(data);
+    }
+    init() {
+        super.init();
         if (!this.sprite) {
             this.sprite = {
                 'type': 'simple',
@@ -20,8 +22,6 @@ class BindSpriteView extends BaseBindView {
         this.sprite.width = width;
         this.sprite.height = height;
         this.getChildAt(0).resize(width, height);
-        this.clearShape();
-        this.addShape(LShape.RECT, [0, 0, width, height]);
     }
     updateView() {
         super.updateView();
@@ -40,7 +40,6 @@ class BindSpriteView extends BaseBindView {
         let sprite = atlas.getSprite(value, this.sprite.type, this.sprite.width, this.sprite.height);
         if (sprite) {
             this.addChild(sprite);
-            this.addShape(LShape.RECT, [0, 0, this.sprite.width, this.sprite.height]);
         }
     }
 }

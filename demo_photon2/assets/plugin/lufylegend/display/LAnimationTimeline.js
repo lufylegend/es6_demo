@@ -89,13 +89,13 @@ class LAnimationTimeline extends LAnimation {
         s.stop();
         s.onframe();
     }
-    addFrameScript(name, func, params, _this) {
+    addFrameScript(name, func, params) {
         let l = this.ll_labelList[name];
         let arr = this.imageArray[l.rowIndex][l.colIndex];
         if (!arr.script) {
             arr.script = [];
         }
-        arr.script.push({ func: func, params: params, name: name, _this: _this });
+        arr.script.push({ func: func, params: params, name: name });
     }
     removeFrameScript(name) {
         let l = this.ll_labelList[name], obj, script, i;
