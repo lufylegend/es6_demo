@@ -1,5 +1,4 @@
 import BaseBindView from './BaseBindView';
-import LSprite from '../../lufylegend/display/LSprite';
 import LButton from '../../lufylegend/display/LButton';
 import LMouseEvent from '../../lufylegend/events/LMouseEvent';
 import PrefabContainer from '../prefabs/PrefabContainer';
@@ -10,11 +9,8 @@ const ButtonTransition = {
     Scale: 'scale'
 };
 class BindButtonView extends BaseBindView {
-    constructor(data) {
-        super(data);
-    }
-    init() {
-        super.init();
+    init(data) {
+        super.init(data);
     }
     updateView() {
         super.updateView();
@@ -65,7 +61,7 @@ class BindButtonView extends BaseBindView {
         let states = [];
         let sprites = [];
         let button = data.property.button;
-        states.push(button.upState || new LSprite());
+        states.push(button.upState);
         if (button.transition === ButtonTransition.Sprite) {
             if (button.overState) {
                 states.push(button.overState);
@@ -78,10 +74,6 @@ class BindButtonView extends BaseBindView {
             }
         }
         for (let childNode of states) {
-            if (!childNode) {
-                sprites.push(null);
-                continue;
-            }
             let child = LNode.create(childNode);
             sprites.push(child);
             if (child instanceof LNode) {

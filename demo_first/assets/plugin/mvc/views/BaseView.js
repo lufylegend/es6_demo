@@ -1,8 +1,8 @@
 import LNode from '../prefabs/LNode';
 import BaseManager from '../managers/BaseManager';
 class BaseView extends LNode {
-    init() {
-        super.init();
+    init(data) {
+        super.init(data);
         setTimeout(() => {
             if (this.widget && BaseManager.currentScene) {
                 BaseManager.currentScene.nextFrameExecute(() => {
@@ -10,6 +10,32 @@ class BaseView extends LNode {
                 });
             }
         });
+    }
+    lateInit() {
+        if (this.bind && this.bind.target && this.bind.toParent) {
+            let target = this.getTarget(this.bind.target);
+            if (target) {
+                target[this.bind.toParent] = this;
+            }
+        }
+    }
+    getController() {
+        if (this._controller) {
+            return this._controller;
+        }
+        let parent = this.parent;
+        while (parent) {
+            if (parent.isController) {
+                this._controller = parent;
+                return parent;
+            }
+            
+            parent = parent.parent;
+            if (typeof parent !== 'object') {
+                break;
+            }
+        }
+        return null;
     }
     getTarget(target) {
         let parent = this.parent;

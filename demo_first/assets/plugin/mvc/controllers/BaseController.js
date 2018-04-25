@@ -1,9 +1,6 @@
 import LNode from '../prefabs/LNode';
 import BaseManager from '../managers/BaseManager';
 class BaseController extends LNode {
-    constructor(data) {
-        super(data);
-    }
     get isController() {
         return true;
     }
