@@ -1,0 +1,13 @@
+{
+   "LLoader":"./plugin/lufylegend/display/LLoader",
+   "LBitmapData":"./plugin/lufylegend/display/LBitmapData",
+   "LBitmap":"./plugin/lufylegend/display/LBitmap",
+   "LSprite":"./plugin/lufylegend/display/LSprite",
+   "LSound":"./plugin/lufylegend/media/LSound",
+   "LAtlas":"./plugin/lufylegend/system/LAtlas",
+   "LMouseEvent":"./plugin/lufylegend/events/LMouseEvent",
+   "LRectangle":"./plugin/lufylegend/geom/LRectangle",
+   "LPoint":"./plugin/lufylegend/geom/LPoint",
+   "LTweenLite":"./plugin/lufylegend/transitions/LTweenLite",
+   "LEasing":"./plugin/lufylegend/transitions/LEasing"
+}
