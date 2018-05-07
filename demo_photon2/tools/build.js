@@ -1,9 +1,7 @@
 /* eslint-env node */
 const { exec } = require('child_process');
-const fs = require('fs');
+const fs = require('fs-extra');
 const commonJson = require('./prefab-class.json');
-const DOMParser = require('dom-parser');
-
 let imports = [];
 for (let key of Object.keys(commonJson)) {
     imports.push(`import ${key} from "${commonJson[key]}";`);
@@ -111,62 +109,6 @@ function writeFile(path, text) {
         });
     });
 }
-function createPlistJson() {
-    return new Promise(function(resolve, reject) {
-        let plists = readFiles('./assets/resources', /.*\.plist$/);
-        for (let plist of plists) {
-            let prefabContext = fs.readFileSync(plist, 'utf8');
-            let data = getPlistData(prefabContext);
-            let metaPath = `${plist}.meta`;
-            fs.writeFileSync(metaPath, data);
-        }
-        resolve();
-    });
-}
-function getPlistData(xml) {
-    let parser = new DOMParser();
-    let xmlDom = parser.parseFromString(xml);
-    let framesDom = xmlDom.getElementsByTagName('dict')[1].childNodes;
-    let frame;
-    let _textureData = {};
-    for (let i = 0;i < framesDom.length;i++) {
-        frame = framesDom[i];
-        if (frame.nodeName === 'key') {
-            let key = frame.innerHTML.replace('.png', '');
-            while (frame) {
-                if (frame.nodeName === 'dict') {
-                    let data = _getTextureData(frame.childNodes);
-                    _textureData[key] = data;
-                    break;
-                }
-                frame = framesDom[++i];
-            }
-        }
-    }
-    return JSON.stringify(_textureData);
-}
-function _getTextureData(framesDom) {
-    let frame;
-    let data = {};
-    for (let i = 0;i < framesDom.length;i++) {
-        frame = framesDom[i];
-        if (frame.nodeName === 'key') {
-            let key = frame.innerHTML;
-            while (frame) {
-                if (frame.nodeName === 'string') {
-                    data[key] = JSON.parse(frame.innerHTML.replace(/\{/g, '[').replace(/\}/g, ']'));
-                    break;
-                } else if (frame.nodeName === 'true' || frame.nodeName === 'false') {
-                    data[key] = JSON.parse(frame.nodeName);
-                    break;
-                }
-                frame = framesDom[++i];
-            }
-        }
-    }
-    return data;
-}
-
 function createMeta() {
     return new Promise(function(resolve, reject) {
         let prefabs = readFiles('./assets/resources', /.*\.prefab$/);
@@ -202,21 +144,19 @@ function filesRestore() {
 
 createMeta()
     .then(() => {
-        return createPlistJson();
-    })
-    .then(() => {
         return readFile(applicationPath);
     })
     .then((data) => {
         applicationText = data;
-        writeFile(applicationPath + '.txt', imports.join(''));
         return writeFile(applicationPath, data + imports.join(''));
     })
     .then(() => {
-        return ExecCommand('rm -rf build/resources');
+        fs.removeSync('build/resources');
+        return Promise.resolve();
     })
     .then(() => {
-        return ExecCommand('cp -a assets/resources build/resources');
+        fs.copySync('assets/resources', 'build/resources');
+        return Promise.resolve();
     })
     .then(() => {
         return ExecCommand('`npm bin`/webpack');

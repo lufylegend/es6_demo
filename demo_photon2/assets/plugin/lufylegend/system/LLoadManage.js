@@ -70,7 +70,12 @@ class LLoadManage extends lufylegend.LEventDispatcher {
                 s.loader.addEventListener(lufylegend.LEvent.PROGRESS, s._loadProgress);
                 s.loader.addEventListener(lufylegend.LEvent.ERROR, s._loadError);
                 s.loader.addEventListener(lufylegend.LEvent.COMPLETE, s._loadComplete);
-                s.loader.load(d.path);
+                if (lufylegend.LSound.webAudioEnabled || lufylegend.LGlobal.wx) {
+                    s.loader.load(d.path);
+                } else {
+                    lufylegend.LSound.addWait(s.loader, d.path);
+                    s.loader.dispatchEvent(lufylegend.LEvent.COMPLETE);
+                }
             } else if (d['type'] === lufylegend.LAtlas.TYPE_PLIST) {
                 s.loader = new lufylegend.LAtlas();
                 s.loader.parent = s;

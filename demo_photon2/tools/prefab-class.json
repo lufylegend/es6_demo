@@ -7,5 +7,7 @@
    "LRectangle":"./plugin/lufylegend/geom/LRectangle",
    "LPoint":"./plugin/lufylegend/geom/LPoint",
    "LTweenLite":"./plugin/lufylegend/transitions/LTweenLite",
-   "LEasing":"./plugin/lufylegend/transitions/LEasing"
+   "LEasing":"./plugin/lufylegend/transitions/LEasing",
+   "LSound":"./plugin/lufylegend/media/LSound",
+   "LAtlas":"./plugin/lufylegend/system/LAtlas"
 }
