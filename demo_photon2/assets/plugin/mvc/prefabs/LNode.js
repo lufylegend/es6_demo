@@ -5,13 +5,15 @@ import LPoint from '../../lufylegend/geom/LPoint';
 import ll from '../../lufylegend/ll';
 import { UNDEFINED } from '../../lufylegend/utils/LConstant';
 class LNode extends LSprite {
-    constructor(data) {
+    constructor(data, skipChild) {
         super();
         this.type = 'LNode';
         if (data) {
             this._initDataProperty(data);
             this.init(data);
-            this._initDataChildNodes(data);
+            if (!skipChild) {
+                this._initDataChildNodes(data);
+            }
         }
     }
     _initDataProperty(data) {
@@ -34,11 +36,12 @@ class LNode extends LSprite {
             return;
         }
         for (let childNode of data.childNodes) {
-            let child = LNode.create(childNode);
+            let child = LNode.create(childNode, true);
             if (child instanceof LDisplayObject) {
                 this.addChild(child);
             }
             if (child instanceof LNode) {
+                child._initDataChildNodes(childNode);
                 child.lateInit();
             }
         }
@@ -135,11 +138,11 @@ class LNode extends LSprite {
         return null;
     }
 }
-LNode.create = function(data) {
+LNode.create = function(data, skipChild = false) {
     let className = data.class;
     let node, cls = PrefabContainer.get(className);
     if (cls) {
-        node = new cls(data);
+        node = new cls(data, skipChild);
     } else {
         console.error('class not found : ', className);
     }

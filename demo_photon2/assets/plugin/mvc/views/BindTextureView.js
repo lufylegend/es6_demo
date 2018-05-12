@@ -5,8 +5,8 @@ import LBitmapData from '../../lufylegend/display/LBitmapData';
 import LLoader from '../../lufylegend/display/LLoader';
 import LEvent from '../../lufylegend/events/LEvent';
 class BindTextureView extends BaseBindView {
-    constructor(data) {
-        super(data);
+    constructor(data, skipChild) {
+        super(data, skipChild);
         this._bitmap = null;
     }
     init() {

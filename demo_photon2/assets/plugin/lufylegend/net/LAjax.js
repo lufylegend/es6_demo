@@ -80,7 +80,6 @@ class LAjax {
         ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         ajax.onreadystatechange = function(e) {
             let request = e.currentTarget;
-            console.log(request);
             if (request.readyState === 4) {
                 if (request.status >= 200 && request.status < 300 || request.status === 304) {
                     if (oncomplete) {

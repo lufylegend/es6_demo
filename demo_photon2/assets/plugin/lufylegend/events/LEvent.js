@@ -1,4 +1,4 @@
-import lufylegend from '../ll';
+import lufylegend from '..//ll';
 class LEvent {
     constructor(type) {
         this.eventType = type;

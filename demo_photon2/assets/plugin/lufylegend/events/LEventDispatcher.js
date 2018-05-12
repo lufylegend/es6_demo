@@ -1,13 +1,13 @@
 import LObject from '../utils/LObject';
-import lufylegend from '../ll';
+import lufylegend from '..//ll';
 class LEventDispatcher extends LObject {
     constructor() {
         super();
         this._eventList = [];
     }
 
-    addEventListener(type, listener) {
-        this._eventList.push({ listener: listener, type: type });
+    addEventListener(type, listener, _this) {
+        this._eventList.push({ listener: listener, type: type, _this: _this });
     }
     removeEventListener(type, listener) {
         let i, length;
@@ -29,12 +29,13 @@ class LEventDispatcher extends LObject {
         let length = this._eventList.length;
         let ctype = (typeof event === 'string') ? event : event.eventType;
         for (let i = 0; i < length; i++) {
-            if (!this._eventList[i]) {
+            let child = this._eventList[i];
+            if (!child) {
                 continue;
             }
             if (ctype === this._eventList[i].type) {
                 if (typeof event === 'string') {
-                    this._eventList[i].listener({
+                    child.listener.call(child._this ? child._this : this, {
                         currentTarget: this,
                         target: this,
                         eventType: ctype,
@@ -48,7 +49,7 @@ class LEventDispatcher extends LObject {
                         event.currentTarget = event.target;
                     }
                     event._ll_preventDefault = false;
-                    this._eventList[i].listener(event);
+                    child.listener.call(child._this ? child._this : this, event);
                     if (event._ll_preventDefault) {
                         return false;
                     }

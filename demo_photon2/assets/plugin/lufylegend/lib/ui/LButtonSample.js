@@ -21,6 +21,7 @@ export class LButtonSample1 extends LButton {
         labelText.x = size * 0.5;
         labelText.y = size * 0.5;
         labelText.text = name;
+        s.labelText = labelText;
         btn_up.back.addChild(labelText);
         let shadow = new LDropShadowFilter(4, 45, '#000000', 10);
         btn_up.shadow.filters = [shadow];
@@ -32,7 +33,6 @@ export class LButtonSample1 extends LButton {
         btn_disable.alpha = 0.5;
         super(btn_up, btn_down, null, btn_disable);
         let s = this;
-        s.labelText = labelText;
         s.backgroundColor = '#000000';
         s.type = 'LButtonSample1';
         s.baseWidth = s.width = labelText.getWidth() + size;
@@ -59,8 +59,7 @@ export class LButtonSample1 extends LButton {
         s.baseWidth = s.width = s.bitmap_up.back.getChildAt(0).getWidth() + s.bitmap_up.back.getChildAt(0).size;
         s.backgroundSet = null;
     }
-    _onDraw(event) {
-        let s = event.currentTarget;
+    _onDraw(s) {
         let co = s.getRootCoordinate(), labelText;
         if (s.backgroundSet === s.backgroundColor && s.widthSet === s.width && s.heightSet === s.height && s.xSet === co.x && s.ySet === co.y) {
             return;
@@ -110,8 +109,7 @@ export class LButtonSample2 extends LButtonSample1 {
         a.y = s.y;
         return a;
     }
-    _onDraw(event) {
-        let s = event.currentTarget;
+    _onDraw(s) {
         let co = s.getRootCoordinate(), labelText;
         if (s.backgroundSet === s.backgroundColor && s.widthSet === s.width && s.heightSet === s.height && s.xSet === co.x && s.ySet === co.y) {
             return;
