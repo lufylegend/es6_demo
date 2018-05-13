@@ -1,0 +1,42 @@
+
+{
+	"class":"BindListChildView",
+	"property":{
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"key":"icon",
+					"atlas":"atlas/skills",
+					"target":"BindListChildView"
+				},
+				"sprite":{
+					"type":"simple",
+					"width":63,
+					"height":63
+				},
+				"x":0,
+				"y":0
+			},
+			"childNodes":[
+					
+			]
+		},
+		{
+			"class":"BindTextView",
+			"property":{
+				"bind":{
+					"key":"cost",
+					"target":"BindListChildView"
+				},
+				"x":0,
+				"y":0
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}

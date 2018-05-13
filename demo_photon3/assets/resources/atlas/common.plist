@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>btn_001.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{233,105},{23,65}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{23,65}</string>
+			</dict>
+			<key>circle_24.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{191,115},{24,24}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{24,24}</string>
+			</dict>
+			<key>circle_48.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{171,331},{48,48}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{48,48}</string>
+			</dict>
+			<key>frame_001.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{191,0},{43,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{43,71}</string>
+			</dict>
+			<key>frame_002.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{234,0},{20,105}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{20,105}</string>
+			</dict>
+			<key>play_out.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{191,71},{44,42}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{44,42}</string>
+			</dict>
+			<key>spinner.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,153},{126,122}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{126,122}</string>
+			</dict>
+			<key>spiritEffect.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{153,191}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{153,191}</string>
+			</dict>
+			<key>white.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{215,115},{3,3}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{3,3}</string>
+			</dict>
+			<key>event.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,360},{86,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{86,74}</string>
+			</dict>
+			<key>home.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{126,244},{90,87}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{90,87}</string>
+			</dict>
+			<key>shop.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{87,331},{84,82}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{84,82}</string>
+			</dict>
+			<key>team.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,275},{85,87}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{85,87}</string>
+			</dict>
+			<key>paddle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{126,153},{91,95}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{91,95}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>common.png</string>
+			<key>realTextureFileName</key>
+			<string>common.png</string>
+			<key>size</key>
+			<string>{256,512}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>256</integer>
+			<key>height</key>
+			<integer>512</integer>
+		</dict>
+	</dict>
+</plist>
