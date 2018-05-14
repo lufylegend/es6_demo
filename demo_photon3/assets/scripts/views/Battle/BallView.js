@@ -19,8 +19,11 @@ class BallView extends BindSpriteView {
         this.x += this.vec.x;
         this.y += this.vec.y;
         if (this.x < deskLayer.x) {
-            this.x = 0;
             this.vec.x *= -1;
+            this.x = deskLayer.x + deskLayer.x - this.x;
+        } else if (this.x > deskLayer.x + 576) {
+            this.vec.x *= -1;
+            this.x = deskLayer.x + 576 - (this.x - deskLayer.x + 576);
         }
     }
 }
