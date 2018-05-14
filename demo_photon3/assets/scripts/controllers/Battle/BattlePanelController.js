@@ -20,6 +20,15 @@ class BattlePanelController extends PanelController {
     }
     onLoadEnd() {
         super.onLoadEnd();
+        this._resizeBattleLayer();
+        EventManager.addEventListener('enemy:move', this._enemyMove, this);
+        
+        this.me.addEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe, this);
+
+        //this.battleLayer
+        //masterClient.battleReady();
+    }
+    _resizeBattleLayer() {
         if (LGlobal.width / LGlobal.height > this.battleLayer.getWidth() / this.battleLayer.getHeight()) {
             this.battleLayer.scaleX = this.battleLayer.scaleY = LGlobal.height / this.battleLayer.getHeight();
         } else {
@@ -27,12 +36,6 @@ class BattlePanelController extends PanelController {
         }
         this.battleLayer.x = (LGlobal.width - this.battleLayer.getWidth()) * 0.5;
         this.battleLayer.y = (LGlobal.height - this.battleLayer.getHeight()) * 0.5;
-        
-        EventManager.addEventListener('enemy:move', this._enemyMove, this);
-        
-        this.me.addEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe, this);
-        //this.battleLayer
-        //masterClient.battleReady();
     }
     _enemyMove(event) {
 
@@ -42,12 +45,24 @@ class BattlePanelController extends PanelController {
         if (paddle.objectIndex !== this.me.objectIndex) {
             return;
         }
+        this.paddle = paddle;
         paddle.dragRange = new LRectangle(32, 752, 528, 0);
         paddle.startDrag(event.touchPointID);
         this.addEventListener(LMouseEvent.MOUSE_UP, this._touchEnd, this);
     }
     _touchEnd(event) {
-        this.me.stopDrag();
+        if (!this.paddle) {
+            return;
+        }
+        this.removeEventListener(LMouseEvent.MOUSE_UP, this._touchEnd);
+        this.paddle.stopDrag();
+        this.paddle = null;
+        if (this.ball.alpha === 0) {
+            this.ball.alpha = 1;
+            this.ball.x = this.me.x + 12;
+            this.ball.y = this.me.y - 24;
+        }
+
     }
 }
 PrefabContainer.set('BattlePanelController', BattlePanelController);

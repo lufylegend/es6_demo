@@ -163,6 +163,28 @@
 					]
 				},
 				{
+					"class":"BindSpriteView",
+					"property":{
+						"bind":{
+							"atlas":"atlas/common",
+							"default":"circle_24",
+							"target":"BattlePanelController",
+							"toParent":"ball"
+						},
+						"x":32,
+						"y":752,
+						"alpha":0,
+						"sprite":{
+							"type":"simple",
+							"width":24,
+							"height":24
+						}
+					},
+					"childNodes":[
+							
+					]
+				},
+				{
 					"class":"BattleCardListView",
 					"property":{
 						"bind":{

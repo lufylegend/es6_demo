@@ -18,14 +18,7 @@ let loadData = [
     { name: DEFAULT_CHARACTER_IMG, path: './resources/images/default.png' }
 ];
 
-LInit(window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function(callback, element) {
-        window.setTimeout(callback, 1000 / 60);
-    }, 'legend', LGlobal.width, LGlobal.height, main);
+LInit(null, 'legend', LGlobal.width, LGlobal.height, main);
 
 function main() {
     LGlobal.align = LStageAlign.TOP_LEFT;

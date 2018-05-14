@@ -76,6 +76,17 @@ export function init(s, c, w, h, f, t) {
         ll.LGlobal.startTimer = (new Date()).getTime();
     };
     let loop;
+    let _requestAF = (function() {
+        return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback, element) {
+            window.setTimeout(callback, 1000 / 60);
+        };
+    })();
+    s = s || _requestAF;
     if (typeof s === 'function') {
         loop = function() {
             s(loop);
@@ -83,16 +94,6 @@ export function init(s, c, w, h, f, t) {
         };
         ll.LGlobal.speed = 1000 / 60;
     } else {
-        let _requestAF = (function() {
-            return window.requestAnimationFrame ||
-   window.webkitRequestAnimationFrame ||
-   window.mozRequestAnimationFrame ||
-   window.oRequestAnimationFrame ||
-   window.msRequestAnimationFrame ||
-   function(callback, element) {
-       window.setTimeout(callback, 1000 / 60);
-   };
-        })();
         ll.LGlobal._requestAFBaseTime = (new Date()).getTime();
         loop = function() {
             let now = (new Date()).getTime();
