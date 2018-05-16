@@ -70,8 +70,8 @@ class BattlePanelController extends PanelController {
         this.ball.alpha = 1;
         this.ball.x = this.me.x + 12;
         this.ball.y = this.me.y - 24;
-        this.ball.vec.x = 1;
-        this.ball.vec.y = 1;
+        this.ball.vec.x = 0;
+        this.ball.vec.y = -16;
     }
 }
 PrefabContainer.set('BattlePanelController', BattlePanelController);

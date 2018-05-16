@@ -1,6 +1,5 @@
-
-import PrefabContainer from '../../plugin/mvc/prefabs/PrefabContainer';
-import BindSpriteView from '../../plugin/mvc/views/BindSpriteView';
+import PrefabContainer from '../../../plugin/mvc/prefabs/PrefabContainer';
+import BindSpriteView from '../../../plugin/mvc/views/BindSpriteView';
 import LEvent from '../../../plugin/lufylegend/events/LEvent';
 import LVec2 from '../../../plugin/lufylegend/geom/LVec2';
 class BallView extends BindSpriteView {
