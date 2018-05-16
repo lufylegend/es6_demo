@@ -1,7 +1,7 @@
 import PrefabContainer from '../../../plugin/mvc/prefabs/PrefabContainer';
 import PanelController from '../../../plugin/mvc/controllers/PanelController';
 //import BaseManager from '../../../plugin/mvc/managers/BaseManager';
-import masterClient from '../../utils/MasterClient';
+//import masterClient from '../../utils/MasterClient';
 import LGlobal from '../../../plugin/lufylegend/utils/LGlobal';
 import EventManager from '../../managers/EventManager';
 import LMouseEvent from '../../../plugin/lufylegend/events/LMouseEvent';
@@ -22,11 +22,15 @@ class BattlePanelController extends PanelController {
         super.onLoadEnd();
         this._resizeBattleLayer();
         EventManager.addEventListener('enemy:move', this._enemyMove, this);
-        
+        EventManager.addEventListener('ball:sendout', this._ballSendOut, this);
         this.me.addEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe, this);
 
         //this.battleLayer
         //masterClient.battleReady();
+    }
+    die() {
+        EventManager.removeEventListener('enemy:move', this._enemyMove);
+        EventManager.removeEventListener('ball:sendout', this._ballSendOut);
     }
     _resizeBattleLayer() {
         if (LGlobal.width / LGlobal.height > this.battleLayer.getWidth() / this.battleLayer.getHeight()) {
@@ -58,11 +62,16 @@ class BattlePanelController extends PanelController {
         this.paddle.stopDrag();
         this.paddle = null;
         if (this.ball.alpha === 0) {
-            this.ball.alpha = 1;
-            this.ball.x = this.me.x + 12;
-            this.ball.y = this.me.y - 24;
+            EventManager.dispatchEvent('ball:sendout');
         }
 
+    }
+    _ballSendOut(event) {
+        this.ball.alpha = 1;
+        this.ball.x = this.me.x + 12;
+        this.ball.y = this.me.y - 24;
+        this.ball.vec.x = 1;
+        this.ball.vec.y = 1;
     }
 }
 PrefabContainer.set('BattlePanelController', BattlePanelController);
