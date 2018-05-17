@@ -22,7 +22,6 @@ class BattlePanelController extends PanelController {
         super.onLoadEnd();
         this._resizeBattleLayer();
         EventManager.addEventListener('enemy:move', this._enemyMove, this);
-        EventManager.addEventListener('ball:sendout', this._ballSendOut, this);
         this.me.addEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe, this);
 
         //this.battleLayer
@@ -30,7 +29,6 @@ class BattlePanelController extends PanelController {
     }
     die() {
         EventManager.removeEventListener('enemy:move', this._enemyMove);
-        EventManager.removeEventListener('ball:sendout', this._ballSendOut);
     }
     _resizeBattleLayer() {
         if (LGlobal.width / LGlobal.height > this.battleLayer.getWidth() / this.battleLayer.getHeight()) {
@@ -62,16 +60,9 @@ class BattlePanelController extends PanelController {
         this.paddle.stopDrag();
         this.paddle = null;
         if (this.ball.alpha === 0) {
-            EventManager.dispatchEvent('ball:sendout');
+            this.me.shoot(this.me.x + 12, this.me.y - 24);
         }
 
-    }
-    _ballSendOut(event) {
-        this.ball.alpha = 1;
-        this.ball.x = this.me.x + 12;
-        this.ball.y = this.me.y - 24;
-        this.ball.vec.x = 0;
-        this.ball.vec.y = -16;
     }
 }
 PrefabContainer.set('BattlePanelController', BattlePanelController);

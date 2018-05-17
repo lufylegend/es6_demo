@@ -121,7 +121,7 @@
 					]
 				},
 				{
-					"class":"BindSpriteView",
+					"class":"PaddleView",
 					"property":{
 						"bind":{
 							"atlas":"atlas/common",
@@ -142,7 +142,7 @@
 					]
 				},
 				{
-					"class":"BindSpriteView",
+					"class":"PaddleView",
 					"property":{
 						"bind":{
 							"atlas":"atlas/common",

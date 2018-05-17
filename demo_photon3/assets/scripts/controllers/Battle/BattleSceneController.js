@@ -8,8 +8,8 @@ class BattleSceneController extends SceneController {
     }
     onLoadEnd() {
         super.onLoadEnd();
-        BaseManager.loadPanel('prefabs/panel/Battle');
-        //BaseManager.loadPanel('prefabs/panel/Marching');
+        //BaseManager.loadPanel('prefabs/panel/Battle');
+        BaseManager.loadPanel('prefabs/panel/Marching');
     }
     roomIn() {
         BaseManager.loadPanel('prefabs/panel/Battle');

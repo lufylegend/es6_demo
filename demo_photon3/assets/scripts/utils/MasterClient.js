@@ -3,7 +3,8 @@ import LEvent from '../../plugin/lufylegend/events/LEvent';
 import AIClient from './AIClient';
 export const ClientEvent = {
     READY: 1, //单方战斗画面准备OK
-    ATTACK: 2,
+    SHOOT: 2,
+    ATTACK: 3,
 };
 export const GameEvent = {
     ROOM_IN: 'roomIn', //进入战斗房间
@@ -19,13 +20,15 @@ class MasterClient extends LEventDispatcher {
         console.error('MasterClient', code, content);
         let event;
         switch (code) {
-        case ClientEvent.ATTACK:
+        case ClientEvent.SHOOT:
             console.error('this.client.myActor().getId()=' + this.client.myActor().getId());
             console.error('content.id=' + content.id);
             if (this.client.myActor().getId() !== content.id) {
-                event = new LEvent('enemy:attack');
-                event.index = content.index;
-                event.hert = content.hertValue;
+                event = new LEvent('ball:sendout');
+                event.x = content.eventObject.x;
+                event.x = content.eventObject.x;
+                event.speedX = content.eventObject.speedX;
+                event.speedY = content.eventObject.speedY;
                 this.dispatchEvent(event);
             }
             break;
@@ -53,6 +56,14 @@ class MasterClient extends LEventDispatcher {
     }
     get enemyId() {
         return this.enemy.id;
+    }
+    shoot(event) {
+        this.client.raiseEventAll(ClientEvent.SHOOT, { 'id': this.client.myActor().getId(), eventObject: {
+            x: event.x,
+            y: event.y,
+            speedX: event.speedX,
+            speedY: event.speedY
+        } });
     }
     attack(index, hertValue) {
         this.client.raiseEventAll(ClientEvent.ATTACK, { 'id': this.client.myActor().getId(), index: index, hertValue: hertValue });
