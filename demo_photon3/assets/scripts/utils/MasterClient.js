@@ -25,10 +25,7 @@ class MasterClient extends LEventDispatcher {
             console.error('content.id=' + content.id);
             if (this.client.myActor().getId() !== content.id) {
                 event = new LEvent('ball:sendout');
-                event.x = content.eventObject.x;
-                event.x = content.eventObject.x;
-                event.speedX = content.eventObject.speedX;
-                event.speedY = content.eventObject.speedY;
+                event.params = content.params;
                 this.dispatchEvent(event);
             }
             break;
@@ -58,12 +55,7 @@ class MasterClient extends LEventDispatcher {
         return this.enemy.id;
     }
     shoot(event) {
-        this.client.raiseEventAll(ClientEvent.SHOOT, { 'id': this.client.myActor().getId(), eventObject: {
-            x: event.x,
-            y: event.y,
-            speedX: event.speedX,
-            speedY: event.speedY
-        } });
+        this.client.raiseEventAll(ClientEvent.SHOOT, { 'id': this.client.myActor().getId(), params: event.params });
     }
     attack(index, hertValue) {
         this.client.raiseEventAll(ClientEvent.ATTACK, { 'id': this.client.myActor().getId(), index: index, hertValue: hertValue });

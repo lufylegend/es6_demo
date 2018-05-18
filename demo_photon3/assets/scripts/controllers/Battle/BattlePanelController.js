@@ -60,7 +60,7 @@ class BattlePanelController extends PanelController {
         this.paddle.stopDrag();
         this.paddle = null;
         if (this.ball.alpha === 0) {
-            this.me.shoot(this.me.x + 12, this.me.y - 24);
+            this.me.shoot(this.me.x + 12, this.me.y - 24, true);
         }
 
     }

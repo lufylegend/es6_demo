@@ -19,13 +19,13 @@ class PaddleView extends BindSpriteView {
         if (this.ball.alpha === 0 || this.ball.launcher.objectIndex === this.objectIndex) {
             return false;
         }
-        if (this.ball.y + this.ball.getHeight() < this.y) {
+        if (this.ball.y + this.ball.size < this.y) {
             return false;
         }
         if (!this.hitTestObject(this.ball)) {
             return false;
         }
-        if (this.ball.y + this.ball.getHeight() > this.y + this.getHeight() * 0.5) {
+        if (this.ball.y + this.ball.size > this.y + this.getHeight() * 0.5) {
             return false;
         }
         this.shoot(this.ball.x, this.ball.y);
@@ -33,24 +33,32 @@ class PaddleView extends BindSpriteView {
     shoot(x, y, isStart) {
         this.ball.launcher = this;
         let event = new LEvent('ball:sendout');
-        event.x = x;
-        event.y = y;
-        let speed = 8;
+        let params = {};
+        params.x = x;
+        params.y = y;
+        let speed = 4;
         if (isStart) {
             let rand = Math.random();
-            let angle = (45 + 90 * rand) * Math.PI / 180;
-            event.speedX = speed * Math.sin(angle) * (rand > 0.5 ? -1 : 1);
-            event.speedY = speed * Math.abs(Math.cos(angle)) * -1;
+            let angle = 45 + 90 * rand;
+            let angleX = angle * Math.PI / 180;
+            let angleY = (angle - 90) * Math.PI / 180;
+            params.speedX = speed * Math.sin(angleX) * (rand > 0.5 ? -1 : 1);
+            params.speedY = speed * Math.abs(Math.cos(angleY)) * -1;
         } else {
             speed += this.ball.vec.length() * 0.5 * Math.random();
-            this.ball.vec.x = this.ball.x + this.ball.getWidth() * 0.5 - this.x - this.getWidth() * 0.5;
-            this.ball.vec.y = this.ball.y + this.ball.getHeight() * 0.5 - this.y - this.getHeight() * 0.5;
+            this.ball.vec.x = this.ball.x + this.ball.radius - this.x - this.getWidth() * 0.5;
+            this.ball.vec.y = this.ball.y + this.ball.radius - this.y - this.getHeight() * 0.5;
             let vec = this.ball.vec.normalize();
             vec.x *= speed;
             vec.y *= speed;
-            event.speedX = vec.x;
-            event.speedY = vec.y;
+            params.speedX = vec.x;
+            params.speedY = vec.y;
         }
+        let enemy = this.getController().enemy;
+        let frames = Math.abs((enemy.y + enemy.getHeight() - this.ball.y) / params.speedY);
+        params.arrivalTime = Date.now() + frames * (1000 / 60);
+        event.params = params;
+        this.ball.arrivalTime = params.arrivalTime;
         EventManager.dispatchEvent(event);
         masterClient.shoot(event);
     }
