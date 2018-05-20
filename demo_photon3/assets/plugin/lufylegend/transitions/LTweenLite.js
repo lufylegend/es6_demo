@@ -220,7 +220,7 @@ class LTweenLiteChild extends LObject {
         return false;
     }
 }
-class LTweenLite extends LObject {
+class LLTweenLite extends LObject {
     constructor() {
         super();
         this.type = 'LTweenLite';
@@ -292,18 +292,18 @@ class LTweenLite extends LObject {
         }
     }
 }
-LTweenLite.PlayStyle = {
+LLTweenLite.PlayStyle = {
     None: 'none',
     Init: 'init'
 };
-LTweenLite.TYPE_FRAME = 'type_frame';
-LTweenLite.TYPE_TIMER = 'type_timer';
-ll.LTweenLiteTimeline = new LTweenLite();
+LLTweenLite.TYPE_FRAME = 'type_frame';
+LLTweenLite.TYPE_TIMER = 'type_timer';
+ll.LTweenLiteTimeline = new LLTweenLite();
 ll.LGlobal.childList.push(ll.LTweenLiteTimeline);
-let tween = new LTweenLite();
-tween.TYPE_FRAME = LTweenLite.TYPE_FRAME;
-tween.TYPE_TIMER = LTweenLite.TYPE_TIMER;
-tween.PlayStyle = LTweenLite.PlayStyle;
-ll.LGlobal.childList.push(tween);
-ll.LTweenLite = tween;
-export default tween;
+let LTweenLite = new LLTweenLite();
+LTweenLite.TYPE_FRAME = LLTweenLite.TYPE_FRAME;
+LTweenLite.TYPE_TIMER = LLTweenLite.TYPE_TIMER;
+LTweenLite.PlayStyle = LLTweenLite.PlayStyle;
+ll.LGlobal.childList.push(LTweenLite);
+ll.LTweenLite = LTweenLite;
+export default LTweenLite;

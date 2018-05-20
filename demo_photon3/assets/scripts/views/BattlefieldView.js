@@ -1,19 +1,44 @@
 
 import PrefabContainer from '../../plugin/mvc/prefabs/PrefabContainer';
-import EventManager from '../managers/EventManager';
+//import EventManager from '../managers/EventManager';
 import BindSpriteView from '../../plugin/mvc/views/BindSpriteView';
-import CharacterView from './CharacterView';
-import LPoint from '../../plugin/lufylegend/geom/LPoint';
+//import CharacterView from './CharacterView';
+//import LPoint from '../../plugin/lufylegend/geom/LPoint';
+import LMouseEvent from '../../plugin/lufylegend/events/LMouseEvent';
+import LRectangle from '../../plugin/lufylegend/geom/LRectangle';
 //import LSprite from '../../plugin/lufylegend/display/LSprite';
 //import ConfigManager from '../managers/ConfigManager';
 class BattlefieldView extends BindSpriteView {
     init(data) {
         super.init(data);
-        EventManager.addEventListener('card:dragEnd', this._dragEnd, this);
+        //this.addEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe, this);
+        //EventManager.addEventListener('card:dragEnd', this._dragEnd, this);
     }
     die() {
         super.die();
-        EventManager.removeEventListener('card:dragEnd', this._cardChange);
+        //this.removeEventListener(LMouseEvent.MOUSE_DOWN, this._touchMe);
+        //EventManager.removeEventListener('card:dragEnd', this._cardChange);
+    }
+    _touchMe(event) {
+        let controller = this.getController();
+        /*let paddle = event.target;
+        if (paddle.objectIndex !== this.me.objectIndex) {
+            return;
+        }*/
+        this.paddle = controller.me;
+        this.paddle.dragRange = new LRectangle(32, 752, 528, 0);
+        this.paddle.startDrag(event.touchPointID);
+        this.addEventListener(LMouseEvent.MOUSE_UP, this._touchEnd, this);
+    }
+    _touchEnd(event) {
+        this.removeEventListener(LMouseEvent.MOUSE_UP, this._touchEnd);
+        this.paddle.stopDrag();
+        this.paddle = null;
+        let controller = this.getController();
+        if (controller.ball.alpha === 0) {
+            controller.me.shoot(controller.me.x + 12, controller.me.y - 24, true);
+        }
+
     }
     updateView() {
         super.updateView();
@@ -60,6 +85,7 @@ class BattlefieldView extends BindSpriteView {
             this.characterLayer.addChild(enemy);
         }*/
     }
+    /*
     _dragEnd(event) {
         let hit = this.hitTestPoint(event.x, event.y);
         if (hit) {
@@ -74,7 +100,7 @@ class BattlefieldView extends BindSpriteView {
         } else {
             EventManager.dispatchEvent('card:back');
         }
-    }
+    }*/
 }
 PrefabContainer.set('BattlefieldView', BattlefieldView);
 export default BattlefieldView;

@@ -4,6 +4,7 @@ import LEvent from '../../../plugin/lufylegend/events/LEvent';
 import LVec2 from '../../../plugin/lufylegend/geom/LVec2';
 import EventManager from '../../managers/EventManager';
 import masterClient from '../../utils/MasterClient';
+import LTweenLite from '../../../plugin/lufylegend/transitions/LTweenLite';
 class BallView extends BindSpriteView {
     init(data) {
         super.init(data);
@@ -28,6 +29,9 @@ class BallView extends BindSpriteView {
         return this._radius;
     }
     _onframe(event) {
+        if (this.alpha === 0) {
+            return;
+        }
         let controller = this.getController();
         let deskLayer = controller.deskLayer;
         this.x += this.vec.x;
@@ -45,6 +49,7 @@ class BallView extends BindSpriteView {
         if (this.y > deskLayer.y + deskLayer.getHeight()) {
             this.alpha = 0;
             console.log('you fail');
+            masterClient.boutOver();
             return;
         }
         if (!this._enemyEvent) {
@@ -62,13 +67,14 @@ class BallView extends BindSpriteView {
         let deskLayer = controller.deskLayer;
 
         let arrivalTime = event.params.arrivalTime;
-        let time = arrivalTime - Date.now() - 1000 * 0.2;
+        let time = arrivalTime - masterClient.now - Math.max(masterClient.diffMillisecond, 200);
         let frames = time / (1000 / 60);
         let enemy = this.getController().enemy;
         let speed = (enemy.y + enemy.getHeight() - event.params.y) / frames;
         let scale = Math.abs(speed / event.params.speedY);
 
         let e = new LEvent('ball:sendout');
+        e.enemy = true;
         e.params = event.params;
         e.params.x = deskLayer.x + deskLayer.getWidth() - e.params.x - this.size;
         e.params.y = deskLayer.y + (deskLayer.y + deskLayer.getHeight() - e.params.y - this.size);
@@ -82,7 +88,14 @@ class BallView extends BindSpriteView {
         //EventManager.dispatchEvent(e);
     }
     _ballSendOut(event) {
+        let controller = this.getController();
+        controller.boutLayer.visible = false;
+        controller.canShoot = false;
         let params = event.params;
+        if (event.enemy && controller.tween) {
+            LTweenLite.remove(controller.tween);
+            controller.enemy.x = params.paddleX;
+        }
         this.alpha = 1;
         this.x = params.x;
         this.y = params.y;

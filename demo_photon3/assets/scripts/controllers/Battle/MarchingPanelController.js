@@ -1,7 +1,7 @@
 import PrefabContainer from '../../../plugin/mvc/prefabs/PrefabContainer';
 import PanelController from '../../../plugin/mvc/controllers/PanelController';
 import BaseManager from '../../../plugin/mvc/managers/BaseManager';
-import masterClient, { GameEvent } from '../../utils/MasterClient';
+import masterClient from '../../utils/MasterClient';
 import LEvent from '../../../plugin/lufylegend/events/LEvent';
 
 class MarchingPanelController extends PanelController {
@@ -10,22 +10,25 @@ class MarchingPanelController extends PanelController {
     }
     onLoadEnd() {
         super.onLoadEnd();
-        masterClient.addEventListener(GameEvent.ROOM_IN, this.roomIn, this);
+        this.addEventListener(LEvent.ENTER_FRAME, this._spinnerRun, this);
+        setTimeout(() => {
+            this.startSearch();
+        }, 100);
+        console.log('MarchingPanelController onLoadEnd');
+    }
+    die() {
+        super.die();
+        this.removeEventListener(LEvent.ENTER_FRAME, this._spinnerRun);
+    }
+    startSearch() {
         let key = 100000000 * Math.random() >>> 0;
         let id = `id.${key}`;
         let name = `name.${key}`;
         masterClient.ai = false;
         masterClient.start(id, name, {});
-        console.log('MarchingPanelController onLoadEnd');
-        this.addEventListener(LEvent.ENTER_FRAME, this.spinnerRun, this);
     }
-    spinnerRun(event) {
+    _spinnerRun(event) {
         this.spinner.rotate += 5;
-    }
-    roomIn() {
-        masterClient.removeEventListener(GameEvent.ROOM_IN, this.roomIn);
-        console.log(this.sceneController);
-        this.sceneController.roomIn();
     }
     gotoTopScene(event, param) {
         BaseManager.loadScene('prefabs/Scene/Top');

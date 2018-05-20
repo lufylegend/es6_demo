@@ -9,27 +9,13 @@
 			"property":{
 				"bind":{
 					"key":"icon",
-					"atlas":"atlas/skills",
+					"atlas":"atlas/Icon",
 					"target":"BindListChildView"
 				},
 				"sprite":{
 					"type":"simple",
-					"width":63,
-					"height":63
-				},
-				"x":0,
-				"y":0
-			},
-			"childNodes":[
-					
-			]
-		},
-		{
-			"class":"BindTextView",
-			"property":{
-				"bind":{
-					"key":"cost",
-					"target":"BindListChildView"
+					"width":50,
+					"height":50
 				},
 				"x":0,
 				"y":0

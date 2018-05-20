@@ -185,13 +185,54 @@
 					]
 				},
 				{
-					"class":"BattleCardListView",
+					"class":"BindSpriteView",
 					"property":{
 						"bind":{
-							"key":"skills",
-							"childPrefab":"prefabs/dialog/BattleCard",
+							"atlas":"atlas/common",
+							"default":"circle_24",
 							"target":"BattlePanelController",
-							"toParent":"battleCardListView"
+							"toParent":"boutLayer"
+						},
+						"x":32,
+						"y":300,
+						"visible":false,
+						"sprite":{
+							"type":"sliced",
+							"width":576,
+							"height":100
+						}
+					},
+					"childNodes":[
+						{
+							"class":"BindTextView",
+							"property":{
+								"bind":{
+									"default":"回合",
+									"target":"BattlePanelController",
+									"toParent":"boutTxt"
+								},
+								"x":263,
+								"y":30,
+								"textField":{
+									"textAlign":"center",
+									"color":"#FFFFFF",
+									"size":30
+								}
+							},
+							"childNodes":[
+										
+							]
+						}
+					]
+				},
+				{
+					"class":"BattleIconListView",
+					"property":{
+						"bind":{
+							"key":"icons",
+							"childPrefab":"prefabs/dialog/BattleIcon",
+							"target":"BattlePanelController",
+							"toParent":"battleIconListView"
 						},
 						"x":32,
 						"y":820

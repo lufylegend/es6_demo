@@ -7,7 +7,8 @@ import LMouseEvent from '../../plugin/lufylegend/events/LMouseEvent';
 import LPoint from '../../plugin/lufylegend/geom/LPoint';
 import LEvent from '../../plugin/lufylegend/events/LEvent';
 import EventManager from '../managers/EventManager';
-class BattleCardListView extends BaseBindView {
+import masterClient from '../utils/MasterClient';
+class BattleIconListView extends BaseBindView {
     init(data) {
         super.init(data);
         this.dragChild = null;
@@ -39,16 +40,13 @@ class BattleCardListView extends BaseBindView {
     }
     createListObject(data, model) {
         let node = LNode.create(data);
-        node.x = this.numChildren * 70;
+        node.x = this.numChildren * 60;
         node.updateWidget(model);
         this.addChild(node);
-        if (this.numChildren > 4) {
-            node.visible = false;
-        }
     }
     _clickCard(event) {
         let child = event.target;
-        console.log(child.model);
+        masterClient.sendIcon(child.model.icon);
     }
     _touchCard(event) {
         let child = event.target;
@@ -82,5 +80,5 @@ class BattleCardListView extends BaseBindView {
         this.dragChild = null;
     }
 }
-PrefabContainer.set('BattleCardListView', BattleCardListView);
-export default BattleCardListView;
+PrefabContainer.set('BattleIconListView', BattleIconListView);
+export default BattleIconListView;

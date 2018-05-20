@@ -39,7 +39,7 @@ let PhotonClient = (function(_super) {
     }
     PhotonClient.prototype.raiseEventAll = function(eventCode, data, options) {
         options = options || {};
-        console.error('raiseEventAll', eventCode, data, options);
+        //console.error('raiseEventAll', eventCode, data, options);
         options.receivers = window.Photon.LoadBalancing.Constants.ReceiverGroup.All;
         this.raiseEvent(eventCode, data, options);
     };
@@ -91,22 +91,31 @@ let PhotonClient = (function(_super) {
                 break;
             case window.Photon.LoadBalancing.Constants.OperationCode.CreateGame:
                 if (errorCode !== 0) {
-                    console.warn('CreateGame:', errorMsg);
+                    console.warn('CreateGame:', errorMsg, this.myActor().getTarget(), this.myActor().isLeader());
+                    if (this.myActor().getTarget()) {
+                        if (!this.myActor().isLeader()) {
+                            this.createPhotonClientRoom(this.myActor().getBattleRoom());
+                            return;
+                        }
+                    }
                     this.disconnect();
                 }
                 break;
             case window.Photon.LoadBalancing.Constants.OperationCode.JoinGame:
                 if (errorCode !== 0) {
-                    console.warn('CreateGame:', errorMsg);
+                    console.warn('JoinGame:', errorMsg);
                     let self = this;
-                    if (this.myActor().isLeader()) {
-                        setTimeout(function() {
-                            self.joinRoom(self.myActor().getBattleRoom());
-                        }, 200);
+                    if (this.myActor().getTarget()) {
+                        if (this.myActor().isLeader()) {
+                            setTimeout(function() {
+                                self.joinRoom(self.myActor().getBattleRoom());
+                            }, 200);
+                        } else {
+                            this.createPhotonClientRoom(this.myActor().getBattleRoom());
+                        }
                     } else {
                         this.createPhotonClientRoom();
                     }
-
                     //this.disconnect();
                 }
                 break;
@@ -118,7 +127,7 @@ let PhotonClient = (function(_super) {
 
     };
     PhotonClient.prototype.onEvent = function(code, content, actorNr) {
-        console.warn('----------onEvent', code, content, actorNr);
+        //console.warn('----------onEvent', code, content, actorNr);
         switch (code) {
         case PhotonEvent.BUILD:
             if (this.myActor().getId() === content.id) {
