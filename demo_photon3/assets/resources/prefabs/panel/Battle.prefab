@@ -240,7 +240,27 @@
 					"childNodes":[
 							
 					]
-				}
+				},
+						{
+							"class":"BindTextView",
+							"property":{
+								"bind":{
+									"default":"0",
+									"target":"BattlePanelController",
+									"toParent":"timeTxt"
+								},
+								"x":5,
+								"y":5,
+								"textField":{
+									"textAlign":"left",
+									"color":"#FFFFFF",
+									"size":20
+								}
+							},
+							"childNodes":[
+										
+							]
+						}
 			]
 		}
 	]

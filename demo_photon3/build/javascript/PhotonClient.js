@@ -91,12 +91,14 @@ let PhotonClient = (function(_super) {
                 break;
             case window.Photon.LoadBalancing.Constants.OperationCode.CreateGame:
                 if (errorCode !== 0) {
-                    console.warn('CreateGame:', errorMsg, this.myActor().getTarget(), this.myActor().isLeader());
                     if (this.myActor().getTarget()) {
                         if (!this.myActor().isLeader()) {
                             this.createPhotonClientRoom(this.myActor().getBattleRoom());
                             return;
                         }
+                    } else {
+                        this.joinRoom(GLOBAL_ROOM_NAME);
+                        return;
                     }
                     this.disconnect();
                 }

@@ -36,28 +36,39 @@ class PaddleView extends BindSpriteView {
         let params = {};
         params.x = x;
         params.y = y;
-        let speed = 4;
+        let timeSum = 2000;
+
+
+        //let speed = 1;
         if (isStart) {
             let rand = Math.random();
             let angle = 45 + 90 * rand;
             let angleX = angle * Math.PI / 180;
             let angleY = (angle - 90) * Math.PI / 180;
-            params.speedX = speed * Math.sin(angleX) * (rand > 0.5 ? -1 : 1);
-            params.speedY = speed * Math.abs(Math.cos(angleY)) * -1;
+            this.ball.vec.x = Math.sin(angleX) * (rand > 0.5 ? -1 : 1);
+            this.ball.vec.y = Math.abs(Math.cos(angleY)) * -1;
+            //params.speedX = speed * Math.sin(angleX) * (rand > 0.5 ? -1 : 1);
+            //params.speedY = speed * Math.abs(Math.cos(angleY)) * -1;
         } else {
-            speed += this.ball.vec.length() * 0.3 * Math.random();
+            //speed += this.ball.vec.length() * 0.3 * Math.random();
             this.ball.vec.x = this.ball.x + this.ball.radius - this.x - this.getWidth() * 0.5;
             this.ball.vec.y = this.ball.y + this.ball.radius - this.y - this.getHeight() * 0.5;
-            let vec = this.ball.vec.normalize();
-            vec.x *= speed;
-            vec.y *= speed;
-            params.speedX = vec.x;
-            params.speedY = vec.y;
+
+            timeSum += Math.abs(this.ball.vec.x / this.ball.vec.y) * 1600;
+            //let vec = this.ball.vec.normalize();
+            //vec.x *= speed;
+            //vec.y *= speed;
+            //params.speedX = vec.x;
+            //params.speedY = vec.y;
         }
+        let vec = this.ball.vec.normalize();
+        params.speedX = vec.x;
+        params.speedY = vec.y;
         params.paddleX = this.x;
-        let enemy = this.getController().enemy;
-        let frames = Math.abs((enemy.y + enemy.getHeight() - this.ball.y) / params.speedY);
-        params.arrivalTime = masterClient.now + frames * (1000 / 60);
+        //let enemy = this.getController().enemy;
+        //let frames = Math.abs((enemy.y + enemy.getHeight() - this.ball.y) / params.speedY);
+        //params.arrivalTime = masterClient.now + frames * (1000 / 60);
+        params.arrivalTime = masterClient.now + timeSum;
         event.params = params;
         this.ball.arrivalTime = params.arrivalTime;
         EventManager.dispatchEvent(event);

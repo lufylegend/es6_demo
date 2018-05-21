@@ -34,7 +34,7 @@ class BattlePanelController extends PanelController {
         masterClient.addEventListener(GameEvent.BOUT_WIN, this._boutWin, this);
         masterClient.addEventListener(GameEvent.BOUT_FAIL, this._boutFail, this);
         masterClient.addEventListener(GameEvent.SEND_ICON, this._sendIcon, this);
-        this.timer = new LTimer(200, 0);
+        this.timer = new LTimer(100, 0);
         this.timer.addEventListener(LTimerEvent.TIMER, this._timerHandler, this);
         this.timer.start();
         if (masterClient.isLeader) {
@@ -101,6 +101,9 @@ class BattlePanelController extends PanelController {
         if (this.paddle) {
             return;
         }
+        if (this.canShoot) {
+            this.startShoot = true;
+        }
         this.paddle = this.me;
         this.paddle.dragRange = new LRectangle(32, 752, 528, 0);
         this.paddle.startDrag(event.touchPointID);
@@ -113,10 +116,10 @@ class BattlePanelController extends PanelController {
         this.removeEventListener(LMouseEvent.MOUSE_UP, this._touchEnd);
         this.paddle.stopDrag();
         this.paddle = null;
-        if (this.canShoot) {
+        if (this.canShoot && this.startShoot) {
             this.me.shoot(this.me.x + 12, this.me.y - 24, true);
         }
-
+        this.startShoot = false;
     }
 }
 PrefabContainer.set('BattlePanelController', BattlePanelController);

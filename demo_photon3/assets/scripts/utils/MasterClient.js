@@ -49,8 +49,8 @@ class MasterClient extends LEventDispatcher {
             }
             break;
         case ClientEvent.SHOOT:
-            console.error('this.client.myActor().getId()=' + this.client.myActor().getId());
-            console.error('content.id=' + content.id);
+            //console.error('this.client.myActor().getId()=' + this.client.myActor().getId());
+            //console.error('content.id=' + content.id);
             if (this.client.myActor().getId() !== content.id) {
                 event = new LEvent('ball:sendout');
                 event.params = content.params;
