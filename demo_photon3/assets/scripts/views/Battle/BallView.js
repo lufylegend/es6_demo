@@ -31,8 +31,6 @@ class BallView extends BindSpriteView {
     }
     _move() {
         let controller = this.getController();
-        //this.startTime = masterClient.now;
-        //this.arrivalTime = params.arrivalTime;
         this.sumLength = this.sumLength || (controller.me.y - controller.enemy.y);
         let nowLength = this.sumLength * (masterClient.now - this.startTime) / (this.arrivalTime - this.startTime);
         this.startTop = this.startTop || (controller.enemy.y + controller.enemy.getHeight());
@@ -56,8 +54,6 @@ class BallView extends BindSpriteView {
         let controller = this.getController();
         let deskLayer = controller.deskLayer;
         this._move();
-        //this.x += this.vec.x;
-        //this.y += this.vec.y;
         if (this.x + this.radius < deskLayer.x) {
             this.vec.x *= -1;
             this.x = deskLayer.x + deskLayer.x - (this.x + this.radius) - this.radius;
@@ -88,18 +84,11 @@ class BallView extends BindSpriteView {
         this.launcher = controller.enemy;
         let deskLayer = controller.deskLayer;
 
-        //let arrivalTime = event.params.arrivalTime;
-        /*let time = arrivalTime - masterClient.now - Math.max(masterClient.diffMillisecond, 200);
-        let frames = time / (1000 / 60);
-        let enemy = this.getController().enemy;
-        let speed = (enemy.y + enemy.getHeight() - event.params.y) / frames;
-        let scale = Math.abs(speed / event.params.speedY);*/
-
         let e = new LEvent('ball:sendout');
         e.enemy = true;
         e.params = event.params;
         controller.timeTxt.text = masterClient.diffMillisecond;
-        //e.params.arrivalTime -= (Math.max(masterClient.diffMillisecond, 200) + 100);
+        
         e.params.arrivalTime -= 500;
         e.params.x = deskLayer.x + deskLayer.getWidth() - e.params.x - this.size;
         e.params.y = deskLayer.y + (deskLayer.y + deskLayer.getHeight() - e.params.y - this.size);

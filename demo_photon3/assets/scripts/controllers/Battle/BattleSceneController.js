@@ -10,7 +10,6 @@ class BattleSceneController extends SceneController {
     onLoadEnd() {
         super.onLoadEnd();
         masterClient.addEventListener(GameEvent.ROOM_IN, this._roomIn, this);
-        //BaseManager.loadPanel('prefabs/panel/Battle');
         BaseManager.loadPanel('prefabs/panel/Marching');
     }
     die() {

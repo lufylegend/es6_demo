@@ -64,6 +64,7 @@ export function removeChild(o) {
     ll.LGlobal.stage.removeChild(o);
 }
 export function init(s, c, w, h, f, t) {
+    console.log(`lufylegend-${ll.version}`);
     ll.LGlobal.speed = s;
     let _f = function() {
         if (ll.LGlobal.canTouch && ll.LGlobal.aspectRatio === LANDSCAPE && window.innerWidth < window.innerHeight) {

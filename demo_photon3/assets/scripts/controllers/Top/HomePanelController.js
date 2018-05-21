@@ -12,14 +12,6 @@ class HomePanelController extends PanelController {
     }
     gotoBattle() {
         BaseManager.loadScene('prefabs/scene/Battle');
-        /*
-        ConfigManager.loadConfig('characters')
-            .then(() => {
-                return ConfigManager.loadConfig('map');
-            })
-            .then(() => {
-                BaseManager.loadScene('prefabs/scene/Battle');
-            });*/
     }
 }
 PrefabContainer.set('HomePanelController', HomePanelController);

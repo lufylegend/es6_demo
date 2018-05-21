@@ -5,9 +5,6 @@ import FooterMenuButtonView from '../../views/FooterMenuButtonView';
 class TopSceneController extends SceneController {
     onLoad(request) {
         super.onLoad(request);
-        this.dispatcher.username = '测试';
-        this.dispatcher.avatar = 'stone';
-        this.dispatcher.cards = [{ name: '老虎', icon: 'dog' }, { name: '狮子', icon: 'dragon' }, { name: '狮子', icon: 'dragon' }, { name: '狮子', icon: 'dragon' }];
     }
     onLoadEnd() {
         super.onLoadEnd();
@@ -36,7 +33,6 @@ class TopSceneController extends SceneController {
         BaseManager.loadPanel('prefabs/panel/' + param, {}, newIndex > oldIndex ? 'right' : 'left');
     }
     gotoBattleScene(event, param) {
-        console.error('gotoBattleScene', event, param);
         BaseManager.loadScene('prefabs/scene/Battle');
     }
 }

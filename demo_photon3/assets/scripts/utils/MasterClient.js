@@ -1,6 +1,5 @@
 import LEventDispatcher from '../../plugin/lufylegend/events/LEventDispatcher';
 import LEvent from '../../plugin/lufylegend/events/LEvent';
-import AIClient from './AIClient';
 export const ClientEvent = {
     READY: 1, //单方战斗画面准备OK
     SHOOT: 2, //打球
@@ -26,7 +25,6 @@ class MasterClient extends LEventDispatcher {
         this.dispatchEvent(event);
     }
     onEvent(code, content, actorNr) {
-        //console.error('MasterClient', code, content, 'isLeader=' + this.isLeader);
         if (this.client.myActor().getId() !== content.id) {
             this.synchronisedTime(content.now);
         }
@@ -49,8 +47,6 @@ class MasterClient extends LEventDispatcher {
             }
             break;
         case ClientEvent.SHOOT:
-            //console.error('this.client.myActor().getId()=' + this.client.myActor().getId());
-            //console.error('content.id=' + content.id);
             if (this.client.myActor().getId() !== content.id) {
                 event = new LEvent('ball:sendout');
                 event.params = content.params;
@@ -141,6 +137,6 @@ class MasterClient extends LEventDispatcher {
 }
 let masterClient = new MasterClient();
 let photonClient = new window.PhotonClient(masterClient);
-let aiClient = new AIClient(masterClient);
+let aiClient = null;
 masterClient.setClient(photonClient, aiClient);
 export default masterClient;
