@@ -1,0 +1,28 @@
+
+{
+	"class":"BindListChildView",
+	"property":{
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"key":"icon",
+					"atlas":"atlas/Icon",
+					"target":"BindListChildView"
+				},
+				"sprite":{
+					"type":"simple",
+					"width":50,
+					"height":50
+				},
+				"x":0,
+				"y":0
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}

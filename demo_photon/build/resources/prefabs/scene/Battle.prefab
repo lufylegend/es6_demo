@@ -1,0 +1,44 @@
+
+{
+	"class":"BattleSceneController",
+	"property":{
+		"x":0,
+		"y":0,
+		"widget":{
+			"top":0,
+			"bottom":0,
+			"left":0,
+			"right":0
+		}
+	},
+	"childNodes":[
+		{
+			"class":"BindSpriteView",
+			"property":{
+				"bind":{
+					"atlas":"atlas/common",
+					"default":"frame_001",
+					"target":"BattleSceneController"
+				},
+				"x":0,
+				"y":0,
+				"name":"panel",
+				"sprite":{
+					"type":"sliced",
+					"width":576,
+					"height":768
+				},
+				"widget":{
+					"target":"BattleSceneController",
+					"top":0,
+					"bottom":0,
+					"left":0,
+					"right":0
+				}
+			},
+			"childNodes":[
+					
+			]
+		}
+	]
+}
