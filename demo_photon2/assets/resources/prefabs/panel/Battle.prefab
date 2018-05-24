@@ -18,7 +18,7 @@
 				"bind":{
 					"atlas":"atlas/common",
 					"default":"frame_001",
-					"target":"BattleSceneController"
+					"target":"BattlePanelController"
 				},
 				"x":0,
 				"y":0,
@@ -28,7 +28,7 @@
 					"height":768
 				},
 				"widget":{
-					"target":"BattleSceneController",
+					"target":"BattlePanelController",
 					"top":0,
 					"bottom":0,
 					"left":0,
@@ -45,7 +45,7 @@
 				"bind":{
 					"atlas":"atlas/common",
 					"default":"circle_24",
-					"target":"BattleSceneController"
+					"target":"BattlePanelController"
 				},
 				"x":0,
 				"y":0,
@@ -62,7 +62,7 @@
 						"bind":{
 							"atlas":"atlas/common",
 							"default":"frame_001",
-							"target":"BattleSceneController",
+							"target":"BattlePanelController",
 							"toParent":"battleLayer"
 						},
 						"x":32,
@@ -83,7 +83,7 @@
 						"bind":{
 							"key":"cards",
 							"childPrefab":"prefabs/dialog/BattleCard",
-							"target":"BattleSceneController",
+							"target":"BattlePanelController",
 							"toParent":"battleCardListView"
 						},
 						"x":32,
@@ -99,7 +99,7 @@
 						"bind":{
 							"atlas":"atlas/common",
 							"default":"circle_48",
-							"target":"BattleSceneController"
+							"target":"BattlePanelController"
 						},
 						"x":450,
 						"y":820,
